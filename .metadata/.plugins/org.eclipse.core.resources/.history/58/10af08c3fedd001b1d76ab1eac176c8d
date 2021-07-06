@@ -1,0 +1,17 @@
+package piece;
+
+import java.util.ArrayList;
+
+public class pawn extends main.Piece {
+
+	ArrayList<Integer> legalMoves = new ArrayList<Integer>();
+	
+	public static void updateLegalMoves(main.Piece pawn) {
+		if(pawn.getType() == 'p') {
+			
+		}
+	}
+	
+	
+	
+}

@@ -1,0 +1,67 @@
+package main;
+
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Mouse implements MouseListener {
+	
+	String name;
+	int location;
+
+	public String getName() { return name; }
+	public void setName(String n) {	name = n; }
+
+	public int getLocation() { return location; }
+	public void setLocation(int i) { location = i; }
+	
+	
+	
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+//		System.out.printf("Mouse was clicked on %s%n", name);
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		//System.out.printf("Mouse was pressed in %s%n", name);
+		//System.out.printf("Location of mouse press: %d%n", location);
+
+		boolean flag = false;
+		for(int i = 0; i < chessboard.LAN_BOARD.size(); i++)
+		{
+			if(location == chessboard.LAN_BOARD.get(i).getLocation()){
+				
+				System.out.println("There is a piece here!");
+//				chessboard.LAN_BOARD.get(i).setLocation();
+				
+				spaceArray.get(i).setBackground(Color.YELLOW);
+				//space.setBackground(Color.WHITE);
+
+
+				flag = true;
+				
+			}
+		}
+		if(!flag)
+			System.out.println("There is not a piece here!");
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+//		System.out.printf("Mouse was released from %s%n", name);
+//		update();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		currentLocation.
+		//System.out.printf("Mouse has entered %s%n", name);
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		//System.out.printf("Mouse has exited %s%n", name);
+	}
+
+}

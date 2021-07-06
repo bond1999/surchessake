@@ -1,0 +1,6 @@
+package piece;
+
+public class queen extends main.Piece {
+	
+
+}

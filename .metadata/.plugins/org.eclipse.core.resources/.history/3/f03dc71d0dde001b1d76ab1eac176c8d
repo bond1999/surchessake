@@ -1,0 +1,10 @@
+package piece;
+
+public class queen extends main.Piece {
+	
+	public void updateLegalMoves(int[] indexedPieceArray) {
+		
+	}
+	
+
+}

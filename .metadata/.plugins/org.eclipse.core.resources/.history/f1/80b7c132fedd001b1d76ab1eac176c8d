@@ -1,0 +1,40 @@
+package main;
+
+public class Piece {
+	
+	private int location;
+	private char color = 'b';
+	private char type;
+	private String imgsrc;
+	
+	// Getters
+	public int getLocation() { return location; }
+	public char getColor() { return color; }
+	public char getType() { return type; }
+	public String getImgsrc() { return imgsrc; }
+	
+	// Setters
+	public void setLocation(int l) { location = l; }
+	public void setColor(char c) { color = c; }
+	public void setType(char t) { type = t; }
+	
+	public void displayPI() { System.out.printf("%s, %s, %s, %s%n",type, location, color, imgsrc); }
+	
+	// Methods
+	public void importValues(char n, int l) {
+
+		String url1 = "images/", url2 = ".png";
+        // convert char n to string
+
+		if((n + 0) > 64 && (n + 0) < 91)
+			color = 'w';
+		type = n;
+		imgsrc = url1 + Character.toString(color) + Character.toString(type) + url2;
+		location = l;
+    
+	}
+
+	
+	
+	
+}

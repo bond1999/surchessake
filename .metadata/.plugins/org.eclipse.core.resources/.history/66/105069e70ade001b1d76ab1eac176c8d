@@ -1,0 +1,26 @@
+package piece;
+
+import java.util.ArrayList;
+
+public class pawn extends main.Piece {
+
+	ArrayList<Integer> legalMoves = new ArrayList<Integer>();
+	
+	public void updateLegalMoves(int[] indexedPieceArray) {
+		
+		// UP
+		if(indexedPieceArray[super.getLocation() + up] == -1 && super.getLocation() + up >= 0 && super.getLocation() + up < 64) {
+			legalMoves.add(super.getLocation() + up);
+		}
+
+		// UP TWO
+		
+		// UP LEFT
+		
+		// UP RIGHT
+			
+	}
+	
+	
+	
+}

@@ -1,0 +1,13 @@
+package piece;
+import java.util.ArrayList;
+
+public class queen extends main.Piece {
+	
+	public ArrayList<Integer> legalMoves = new ArrayList<Integer>();
+	
+	@Override
+	public void updateLegalMoves(int[] indexedPieceArray) {	
+		super.updateLegalMoves(indexedPieceArray);
+	
+	}
+}

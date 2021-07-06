@@ -1,0 +1,170 @@
+package main;
+
+import main.Piece;
+import main.Mouse;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+
+import javax.swing.*;
+import java.util.ArrayList;
+
+public class chessboard implements Runnable {
+
+	public static String SETUP_BOARD = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq e3 0 1";
+	
+	static ArrayList<Piece> LAN_BOARD = new ArrayList<Piece>();
+	static ArrayList<JPanel> spaceArray = new ArrayList<JPanel>();
+	
+	// This function is actual readFEN, but we are Lawyer-Aggarwal hence, the name
+	// Brackets mark the incompletion of the FEN string
+	// The watcher of the watcher sees all.
+	// The watcher is being watched.
+	// (rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1)
+	public static void readBSN(String BSN) {
+		
+		char pString[] = BSN.toCharArray();
+		int pIndex = 0;
+		for (int i = 0; i < BSN.length() && pString[i] != ' '; i++) {
+			
+			if(!Character.isDigit(pString[i]) && pString[i]!= '/') {
+				
+				Piece p = new Piece();
+				p.importValues(pString[i], pIndex);				
+				
+				// set location
+				LAN_BOARD.add(p);
+
+				// CHECKPOINT: Next time, on Surchessake TV, the crew will iterate through the string
+				// and make new Piece objects to add to the ArrayList! Also, make a tracker for the
+				// location number.		
+				pIndex++;
+
+			}
+			else if(Character.isDigit(pString[i]) && pString[i]!= '/')
+				pIndex += (pString[i] - 48);
+
+		}
+
+	}
+
+	//static MouseMotionListener ScreenMouse;
+	
+	public static void displayBoard() {
+
+		// The JFrame window to display the game.
+		JFrame window = new JFrame("Surchessake");
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setSize(640, 640);
+		window.setLayout(null);
+		
+		// The JPanel screen that sits in the JFrame window and contains the board.
+		JPanel screen = new JPanel();
+		screen.setSize(640, 640);
+		screen.setLayout(null);
+		screen.setBackground(Color.LIGHT_GRAY);
+
+		//screen.addMouseMotionListener(ScreenMouse);
+		
+		// The JPanel that displays the chess board and sits in the screen. 
+		JPanel board = new JPanel();
+		board.setSize(512, 512);
+		board.setLocation(64, 44);
+		board.setBackground(Color.BLACK);
+		board.setLayout(new GridLayout(8, 8, 0, 0));
+		
+		// squareIndexs and Flags for Piece Layout
+
+		// arraylist to store jpanel spaces to access later
+	
+
+		int squareIndex = 0;
+		int flag = 0;
+
+		for(int i = 0; i < 8; i++) { 
+			for(int j = 0; j < 8; j++) {
+				
+				JPanel space = new JPanel();
+
+				char letter = (char) (j + 65);
+				char number = (char) (8 - i + 48);
+
+				space.setSize(64,64);
+				Mouse mouseListener = new Mouse();
+				mouseListener.setName(Character.toString(letter) + Character.toString(number));
+				mouseListener.setLocation(squareIndex);
+				space.addMouseListener(mouseListener);
+
+				if (flag == 0){
+					space.setBackground(Color.WHITE);
+					 flag = 1;
+				}else {
+					space.setBackground(Color.BLACK);
+					 flag = 0;
+				}
+				
+				JLabel piece = new JLabel();
+				
+				for(int k=0; k<LAN_BOARD.size(); k++) {
+					if(squareIndex == LAN_BOARD.get(k).getLocation())
+						piece.setIcon(new ImageIcon(LAN_BOARD.get(k).getImgsrc()));
+				}
+				
+				
+				piece.setVisible(true);
+				piece.setSize(64,64);
+				space.add(piece);
+
+				// add space to the arraylist
+				spaceArray.add(space);
+
+				space.setVisible(true);
+				space.setLayout(null);
+				board.add(space);
+
+				squareIndex++;
+			}
+		
+			if (flag == 0)
+				flag = 1;
+			else 
+				flag = 0;
+				
+		}		
+
+		board.setVisible(true);
+		screen.setVisible(true);
+		window.setVisible(true);
+		
+		screen.add(board);
+		window.add(screen);
+		
+		boardInfo(LAN_BOARD);
+	
+	}
+	
+	public static void boardInfo(ArrayList<Piece> board) {
+
+		for (int i = 0; i < board.size(); i++) {
+			board.get(i).displayPI();
+		}
+	}
+
+	public void movePiece(String mouseStart, String mouseEnd) {
+//		if()
+	}
+	
+	public void update() {
+		
+	}
+	
+	// Live Piece Drag
+	public void run() {
+		try{
+//			while(true)
+//				System.out.print(MasterMouse.mouseDragged(MouseEvent.);
+		} catch (Exception e) {}
+	}
+
+}

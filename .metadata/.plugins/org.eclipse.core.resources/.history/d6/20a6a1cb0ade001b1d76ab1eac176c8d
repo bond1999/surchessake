@@ -1,0 +1,28 @@
+package piece;
+
+import java.util.ArrayList;
+
+public class pawn extends main.Piece {
+
+	ArrayList<Integer> legalMoves = new ArrayList<Integer>();
+	
+	public void updateLegalMoves(int[] checkPiece) {
+		
+		// UP
+		if() != 69) {
+			if(main.chessboard.getPieceIndex(super.getLocation() + up) == -1) {
+				
+			}
+		}
+
+		// UP TWO
+		
+		// UP LEFT
+		
+		// UP RIGHT
+			
+	}
+	
+	
+	
+}

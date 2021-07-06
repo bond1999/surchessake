@@ -1,0 +1,9 @@
+package piece;
+
+import java.util.ArrayList;
+
+public class pawn extends main.Piece {
+
+	ArrayList<Integer> legalMoves = new ArrayList<Integer>();
+	
+}

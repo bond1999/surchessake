@@ -1,0 +1,63 @@
+package main;
+
+import java.awt.Color;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Mouse implements MouseListener {
+	
+	String name;
+	int location;
+	
+	static int onChessboard;
+	static int currentSquare;
+
+	public String getName() { return name; }
+	public void setName(String n) {	name = n; }
+
+	public int getLocation() { return location; }
+	public void setLocation(int i) { location = i; }
+	
+	
+	
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+//		System.out.printf("Mouse was clicked on %s%n", name);
+		if (onChessboard == 1) // Mouse is still on the chessboard.
+			chessboard.spaceArray.get(location).setBackground(Color.RED);
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		//System.out.printf("Mouse was pressed in %s%n", name);
+		//System.out.printf("Location of mouse press: %d%n", location);
+
+		chessboard.spaceArray.get(location).setBackground(Color.YELLOW);
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+//		System.out.printf("Mouse was released from %s%n", name);
+//		update();
+		if (onChessboard == 1) // Mouse is still on the chessboard.
+			chessboard.spaceArray.get(currentSquare).setBackground(Color.RED);
+			
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		onChessboard++;
+		currentSquare = location;
+		//System.out.printf("Mouse has entered %s%n", name);
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		onChessboard--;
+		//System.out.printf("Mouse has exited %s%n", name);
+	}
+
+}

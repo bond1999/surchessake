@@ -1,0 +1,8 @@
+package piece;
+
+public class rook extends main.Piece {
+	
+	public void updateLegalMoves(int[] indexedPieceArray) {
+		
+	}
+}

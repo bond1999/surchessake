@@ -1,0 +1,33 @@
+package main;
+
+import main.chessboard;
+import main.update;
+
+import java.awt.*;
+import javax.swing.*;
+
+public class surchessake {
+
+	public static boolean mousePressed = false;
+
+	public static void main(String[] args) {
+		
+		chessboard.readBSN(chessboard.SETUP_BOARD);
+		chessboard.displayBoard();
+		
+		//Mouse and Piece Movement Thread
+		Thread chessboardThread = new Thread(new chessboard());
+		
+		//Timer Thread
+//		Thread timer = new Thread(new update());
+
+		chessboardThread.start();
+//		timer.start();
+		
+	}
+	
+	public void update() {
+		
+	}
+	
+}
