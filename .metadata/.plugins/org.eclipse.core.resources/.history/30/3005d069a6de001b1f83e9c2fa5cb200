@@ -17,7 +17,6 @@ public class surchessake {
 		chessboardThread.start();
 //		timer.start();
 		
-		// Git successful pull-push!
 	}
 	
 }
