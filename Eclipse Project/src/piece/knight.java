@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class knight extends main.Piece {
 	
 	public ArrayList<Integer> legalMoves = new ArrayList<Integer>();
+	public static int points = 3;
 	
 	@Override
 	public ArrayList<Integer> getLegalMoves() {

@@ -14,6 +14,7 @@ public class chessboard implements Runnable {
 	static JPanel screen = new JPanel();
 	static JPanel board = new JPanel();
 	
+	
 	static Cursor currentCursorType = Cursor.getDefaultCursor();
 
 	static ArrayList<Piece> LAN_BOARD = new ArrayList<Piece>();
@@ -31,15 +32,15 @@ public class chessboard implements Runnable {
 			checkPiece[pieceArray.get(i).getLocation()] = pieceArray.get(i).getType();
 		}
 		
-		for (int i = 0; i < 64; i++){
-			if(checkPiece[i] > -1 && checkPiece[i] < 10)
-					System.out.printf("  %d",checkPiece[i]);
-			else
-				System.out.printf(" %d",checkPiece[i]);	
-			if((i+1)%8 == 0)
-				System.out.printf("%n");
-				
-		}
+//		for (int i = 0; i < 64; i++){
+//			if(checkPiece[i] > -1 && checkPiece[i] < 10)
+//					System.out.printf("  %d",checkPiece[i]);
+//			else
+//				System.out.printf(" %d",checkPiece[i]);	
+//			if((i+1)%8 == 0)
+//				System.out.printf("%n");
+//				
+//		}
 	}
 	
 	
@@ -220,8 +221,7 @@ public class chessboard implements Runnable {
 		try{
 			
 			updateCheckPiece(LAN_BOARD);
-			algorithm.displayAllPossibleMoves(LAN_BOARD);
-			
+//			algorithm.displayAllPossibleMoves();
 			JPanel panelInHand = new JPanel();
 			panelInHand.setOpaque(false);
 			panelInHand.setSize(64,64);
@@ -238,6 +238,7 @@ public class chessboard implements Runnable {
 			
 			boolean holdPiece = false;
 			boolean messWithTheBoard = true;
+//			boolean displayMoves = false;
 			
 			while(true) {
 				Mouse.currentPointerLocation = MouseInfo.getPointerInfo().getLocation();
@@ -266,14 +267,13 @@ public class chessboard implements Runnable {
 					messWithTheBoard = false;
 				}
 				
+				
 				// Dropping a piece.
 				if(currentCursorType == Cursor.getDefaultCursor() && messWithTheBoard == false && holdPiece == true) {
 					
 					// Sets the icon for the square moved to and removes the icon from the original square.
 					pieceIconArray.get(Mouse.currentSquare).setIcon(new ImageIcon(LAN_BOARD.get(getPieceIndex(Mouse.originalSquare)).getImgsrc()));
 					panelInHand.setVisible(false);
-					
-					//isPiece(Mouse.currentSquare) && Mouse.clicked == false
 					
 					// Update Piece ArrayList (LAN_BOARD
 					if(Mouse.currentSquare != Mouse.originalSquare) {

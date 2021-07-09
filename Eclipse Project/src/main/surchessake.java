@@ -8,10 +8,10 @@ public class surchessake {
 		chessboard.displayBoard();
 
 		
-		//Mouse and Piece Movement Thread
+		// Mouse and Piece Movement Thread
 		Thread chessboardThread = new Thread(new chessboard());
 		
-		//Timer Thread
+		// Timer Thread
 //		Thread timer = new Thread(new update());
 
 		chessboardThread.start();

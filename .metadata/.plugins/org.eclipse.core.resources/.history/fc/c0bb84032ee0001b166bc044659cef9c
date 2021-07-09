@@ -1,0 +1,73 @@
+package main;
+import java.util.Scanner;
+import java.awt.Color;
+import java.util.ArrayList;
+
+public class algorithm {
+	
+	public static void displayAllPossibleMoves(ArrayList<main.Piece> pieceArray) {
+		
+		try {
+			int sum = 0;
+		for (int i = 0; i < pieceArray.size(); i++){
+			pieceArray.get(i).updateLegalMoves(chessboard.checkPiece);
+			sum += pieceArray.get(i).getLegalMoves().size();
+			System.out.printf("%d had %d moves:! ", pieceArray.get(i).getLocation(), pieceArray.get(i).getLegalMoves().size());
+			
+			Color tempColor;
+			ArrayList<Color> legalMoveColors = new ArrayList<Color>();
+
+			for (int j = 0; j < pieceArray.get(i).getLegalMoves().size(); j++) {
+				System.out.printf("%d ", pieceArray.get(i).getLegalMoves().get(j));				
+			}
+			System.out.printf("%n");
+			
+			if (chessboard.squareArray.get(pieceArray.get(i).getLocation()).getBackground() == Color.DARK_GRAY)
+				tempColor = Color.DARK_GRAY;
+			else
+				tempColor = Color.WHITE;
+			
+			main.chessboard.squareArray.get(main.chessboard.LAN_BOARD.get(i).getLocation()).setBackground(Color.RED);
+			
+			for (int j = 0; j < pieceArray.get(i).getLegalMoves().size(); j++) {
+				
+				if(chessboard.squareArray.get(pieceArray.get(i).getLegalMoves().get(j)).getBackground() == Color.DARK_GRAY)
+					legalMoveColors.add(Color.DARK_GRAY);
+				else
+					legalMoveColors.add(Color.WHITE);
+				chessboard.squareArray.get(pieceArray.get(i).getLegalMoves().get(j)).setBackground(Color.YELLOW);
+				
+			}
+
+			Scanner input = new Scanner(System.in);  // Create a Scanner object
+    		System.out.println("Enter anything to continue..");
+    		String userName = input.nextLine();  // Read user input
+
+			if (tempColor == Color.DARK_GRAY)
+				main.chessboard.squareArray.get(chessboard.getPieceIndex(i)).setBackground(Color.DARK_GRAY);
+			else
+				main.chessboard.squareArray.get(chessboard.getPieceIndex(i)).setBackground(Color.WHITE);
+
+			for (int j = 0; j < legalMoveColors.size(); j++) {
+				if (legalMoveColors.get(j) == Color.DARK_GRAY) {
+					System.out.println("Reseting black square!");
+					main.chessboard.squareArray.get(pieceArray.get(i).getLegalMoves().get(j)).setBackground(Color.DARK_GRAY);
+				} else {
+					System.out.println("Reseting white square!");
+					main.chessboard.squareArray.get(pieceArray.get(i).getLegalMoves().get(j)).setBackground(Color.WHITE);
+				}
+				
+			}
+			legalMoveColors.clear();
+
+		}
+		System.out.println(sum);
+		} catch (Exception E) {
+			System.out.println("Exception Caught!");
+			System.out.println(E.getMessage());
+			
+		}
+		
+	}
+
+}
