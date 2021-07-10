@@ -1,22 +1,18 @@
 package main;
 
-import piece.*;
-
 import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class chessboard implements Runnable {
 
-	public static String SETUP_BOARD = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-
 	static JFrame window = new JFrame("Surchessake");
 	static JPanel screen = new JPanel();
 	static JPanel board = new JPanel();
 	
-	
 	static Cursor currentCursorType = Cursor.getDefaultCursor();
-
+	static PGN pgnMoves;
+	
 	static ArrayList<Piece> LAN_BOARD = new ArrayList<Piece>();
 	static ArrayList<JPanel> squareArray = new ArrayList<JPanel>();
 	static ArrayList<JLabel> pieceIconArray = new ArrayList<JLabel>();
@@ -32,94 +28,6 @@ public class chessboard implements Runnable {
 			checkPiece[pieceArray.get(i).getLocation()] = pieceArray.get(i).getType();
 		}
 		
-//		for (int i = 0; i < 64; i++){
-//			if(checkPiece[i] > -1 && checkPiece[i] < 10)
-//					System.out.printf("  %d",checkPiece[i]);
-//			else
-//				System.out.printf(" %d",checkPiece[i]);	
-//			if((i+1)%8 == 0)
-//				System.out.printf("%n");
-//				
-//		}
-	}
-	
-	
-	public static boolean isPiece(int location) {
-		boolean pieceFound = false;
-
-		for (int i = 0; i < LAN_BOARD.size(); i++) {
-			if (location == LAN_BOARD.get(i).getLocation()) 
-				pieceFound = true;
-		}
-		return pieceFound;
-	}
-
-	public static int getPieceIndex(int location) {
-		int l = -1;
-		if(location > 63 || location < 0)
-			return 69;
-		else {
-			for (int i = 0; i < LAN_BOARD.size(); i++) {
-				if (location == LAN_BOARD.get(i).getLocation()) 
-					l = i;
-			}
-			return l;
-		}
-	}
-	
-	// Function to read a FEN String and create Pieces in the back-end
-	public static void readLAN(String LAN) {
-		
-		char pString[] = LAN.toCharArray();
-		int pIndex = 0;
-		
-		// Looping through each character in a FEN String until just the position is reconstructed
-		for (int i = 0; i < LAN.length() && pString[i] != ' '; i++) {
-
-			// Reading piece type
-			if(!Character.isDigit(pString[i]) && pString[i]!= '/') {
-				
-				Piece newPiece = new Piece();
-				switch(pString[i]) {
-					case 'P':
-					case 'p':
-						newPiece = new pawn();
-						break;
-					case 'R':
-					case 'r':
-						newPiece = new rook();
-						break;
-					case 'N':
-					case 'n':
-						newPiece = new knight();
-						break;
-					case 'B':
-					case 'b':
-						newPiece = new bishop();
-						break;
-					case 'Q':
-					case 'q':
-						newPiece = new queen();
-						break;
-					case 'K':
-					case 'k':
-						newPiece = new king();
-						break;
-				}
-				
-				
-				// type.Piece p = new type.Piece();
-				newPiece.importValues(pString[i], pIndex);				
-				
-				// Adding the Piece to the Piece Array
-				LAN_BOARD.add(newPiece);
-				pIndex++;
-			}
-			// Reading piece location
-			else if(Character.isDigit(pString[i]) && pString[i]!= '/')
-				pIndex += (pString[i] - 48);
-
-		}
 	}
 	
 	// Function to display the Java JFrame window with the chessboard layers
@@ -150,11 +58,13 @@ public class chessboard implements Runnable {
 				
 				JPanel square = new JPanel();
 
+				// Beautiful ASCII fleing.
 				char letter = (char) (j + 65);
 				char number = (char) (8 - i + 48);
 
 				square.setSize(64,64);
 				
+				// Initializing MouseListeners for each square.
 				Mouse mouseListener = new Mouse();
 				mouseListener.setName(Character.toString(letter) + Character.toString(number));
 				mouseListener.setLocation(squareIndex);
@@ -170,14 +80,14 @@ public class chessboard implements Runnable {
 				
 				JLabel piece = new JLabel();
 				
+				// If the square is the location of a piece, get correct icon.
 				for(int k=0; k<LAN_BOARD.size(); k++) {
 					if(squareIndex == LAN_BOARD.get(k).getLocation())
 						piece.setIcon(new ImageIcon(LAN_BOARD.get(k).getImgsrc()));
 				}
 
+				// Add the piece to the array and square.
 				pieceIconArray.add(piece);
-				
-				
 				piece.setVisible(true);
 				piece.setSize(64,64);
 				square.add(piece);
@@ -190,76 +100,72 @@ public class chessboard implements Runnable {
 				board.add(square);
 
 				squareIndex++;
-			}
+
+			} // For each column of the board.
 		
+			// Flags for alternating square color.
 			if (flag == 0)
 				flag = 1;
 			else 
 				flag = 0;
 				
-		}		
+		} // For each row of the board.	
 
+		// Set visibility.
 		board.setVisible(true);
 		screen.setVisible(true);
 		window.setVisible(true);
 		
+		// Add board to screen, and screen to window.
 		screen.add(board);
 		window.add(screen);
-//		boardInfo(LAN_BOARD);
 		
-	}
-	
-	public static void boardInfo(ArrayList<Piece> board) {
-
-		for (int i = 0; i < board.size(); i++) {
-			board.get(i).displayPI();
-		}
-	}
+	} // displayBoard()
 	
 	// Live Piece Drag
 	public void run() {
 		try{
 			
+			// New panel for picking up a piece.
 			updateCheckPiece(LAN_BOARD);
-//			algorithm.displayAllPossibleMoves();
 			JPanel panelInHand = new JPanel();
 			panelInHand.setOpaque(false);
 			panelInHand.setSize(64,64);
 			panelInHand.setLayout(null);
 			
+			// New label to put on new paenl.
 			JLabel labelnHand = new JLabel();
 			labelnHand.setSize(64,64);
 			labelnHand.setVisible(true);
 
+			// Add the label to the panel.
 			panelInHand.add(labelnHand);
 
+			// Make window glass pane.
 			window.setGlassPane(panelInHand);
 			window.getGlassPane().setSize(64,64);
 			
+			// Start off not holding a piece, and able to mess with the board.
 			boolean holdPiece = false;
 			boolean messWithTheBoard = true;
-//			boolean displayMoves = false;
 			
 			while(true) {
 				Mouse.currentPointerLocation = MouseInfo.getPointerInfo().getLocation();
 				
-				// if the mouse is on a square with a piece
-				if(isPiece(Mouse.currentSquare) && holdPiece == false && messWithTheBoard == true) {
+				// If the mouse is on a square with a piece.
+				if(Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && holdPiece == false && messWithTheBoard == true) {
 					if(Mouse.clicked == true) {
-						labelnHand.setIcon(new ImageIcon(LAN_BOARD.get(getPieceIndex(Mouse.originalSquare)).getImgsrc()));
+						labelnHand.setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
 						System.out.print("true");
 						holdPiece = true;
 						messWithTheBoard = false;
-						// t + image source = transparent piece image
-						StringBuilder transparent = new StringBuilder(LAN_BOARD.get(getPieceIndex(Mouse.originalSquare)).getImgsrc());
+						StringBuilder transparent = new StringBuilder(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc());
         				transparent.insert(7, 't');
 						pieceIconArray.get(Mouse.originalSquare).setIcon(new ImageIcon(transparent.toString()));
-//						pieceIconArray.get(Mouse.originalSquare)
 					}
 				}
 				
-				// While holding a piece
-				// You can't mess with the board while holding the piece
+				// While holding a piece (you can't mess with the board while holding the piece)
 				if(currentCursorType == Cursor.getPredefinedCursor(12) && holdPiece == true && messWithTheBoard == false) {
 					window.setCursor(currentCursorType);
 					panelInHand.setLocation(Mouse.currentPointerLocation.x - 32, Mouse.currentPointerLocation.y - 64);
@@ -267,22 +173,21 @@ public class chessboard implements Runnable {
 					messWithTheBoard = false;
 				}
 				
-				
 				// Dropping a piece.
 				if(currentCursorType == Cursor.getDefaultCursor() && messWithTheBoard == false && holdPiece == true) {
 					
 					// Sets the icon for the square moved to and removes the icon from the original square.
-					pieceIconArray.get(Mouse.currentSquare).setIcon(new ImageIcon(LAN_BOARD.get(getPieceIndex(Mouse.originalSquare)).getImgsrc()));
+					pieceIconArray.get(Mouse.currentSquare).setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
 					panelInHand.setVisible(false);
 					
-					// Update Piece ArrayList (LAN_BOARD
+					// Update Piece ArrayList
 					if(Mouse.currentSquare != Mouse.originalSquare) {
 						updateCheckPiece(LAN_BOARD);
-						if (isPiece(Mouse.currentSquare) && Mouse.clicked == false) {
-							LAN_BOARD.remove(getPieceIndex(Mouse.currentSquare));
+						if (Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && Mouse.clicked == false) {
+							LAN_BOARD.remove(Piece.getPieceIndex(Mouse.currentSquare, LAN_BOARD));
 						}
 						pieceIconArray.get(Mouse.originalSquare).setIcon(null);	
-						LAN_BOARD.get(getPieceIndex(Mouse.originalSquare)).setLocation(Mouse.currentSquare);
+						LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).setLocation(Mouse.currentSquare);
 					}
 					
 					// Display update board with current pieces
@@ -291,11 +196,16 @@ public class chessboard implements Runnable {
 					// After dropping a pice, we are no longer holding one and can mess with the board again.
 					holdPiece = false;					
 					messWithTheBoard = true;
-				}
-				
-		
-			}
-		} catch (Exception e) {}
-	}
 
-}
+					// Displays all possible moves for each piece.
+					algorithm.displayAllPossibleMoves();
+
+				} // Dropping a piece.
+
+			} // while(true)
+
+		} catch (Exception e) {} // Try catch in run().
+
+	} // run()
+
+} // chessboard

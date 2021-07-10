@@ -15,6 +15,28 @@ public class queen extends main.Piece {
 	@Override
 	public void updateLegalMoves(int[] indexedPieceArray) {	
 		super.updateLegalMoves(indexedPieceArray);
+
+		// UP
+
+		// DOWN
+
+		// LEFT
+
+		// RIGHT
+
+		// UP LEFT DIAGONAL
+
+		// UP RIGHT DIAGONAL
+
+		// DOWN RIGHT DIAGONAL
+
+		// DOWN LEFT DIAGONAL
 	
+		// NEED FUNCTION TO CHECK IF KING IS IN CHECK
+		
+		// KING IN CHECK
+		// if kingIsInCheck
+			// delete legal moves
+
 	}
 }

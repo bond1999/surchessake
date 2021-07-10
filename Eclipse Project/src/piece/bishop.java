@@ -16,6 +16,20 @@ public class bishop extends main.Piece {
 	@Override
 	public void updateLegalMoves(int[] indexedPieceArray) {	
 		super.updateLegalMoves(indexedPieceArray);
+
+		// UP LEFT DIAGONAL
+
+		// UP RIGHT DIAGONAL
+
+		// DOWN LEFT DIAGONAL
+
+		// DOWN RIGHT DIAGONAL
 		
+		// NEED FUNCTION TO CHECK IF KING IS IN CHECK
+		
+		// KING IN CHECK
+		// if kingIsInCheck
+			// delete legal moves
+
 	}
 }

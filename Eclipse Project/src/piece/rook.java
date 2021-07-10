@@ -14,6 +14,20 @@ public class rook extends main.Piece {
 	@Override
 	public void updateLegalMoves(int[] indexedPieceArray) {	
 		super.updateLegalMoves(indexedPieceArray);
+
+		// UP
+
+		// DOWN
+
+		// LEFT
+
+		// RIGHT
 		
+		// NEED FUNCTION TO CHECK IF KING IS IN CHECK
+		
+		// KING IN CHECK
+		// if kingIsInCheck
+			// delete legal moves
+
 	}
 }

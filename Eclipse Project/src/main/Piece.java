@@ -53,8 +53,7 @@ public class Piece {
 			down_left *= -1; down_right *= -1;
 		}
 		
-	}
-	
+	} 
 	
 	public void displayPI() { System.out.printf("%s, %s, %s, %s%n",type, location, color, imgsrc); }
 	
@@ -62,14 +61,38 @@ public class Piece {
 	public void importValues(char n, int l) {
 
 		String url1 = "images/", url2 = ".png";
-        // convert char n to string
-
+		
+		// Convert Char n to String (ASCII flex)
 		if((n + 0) > 97 && (n + 0) < 122)
 			color = 1;
 		setType(n);
 		imgsrc = url1 + Integer.toString(type) + url2;
 		location = l;
     
+	}
+
+	public static boolean isPiece(int location, ArrayList<Piece> LAN_BOARD) {
+		boolean pieceFound = false;
+
+		for (int i = 0; i < LAN_BOARD.size(); i++) {
+			if (location == LAN_BOARD.get(i).getLocation()) 
+				pieceFound = true;
+		}
+		return pieceFound;
+	}
+
+
+	public static int getPieceIndex(int location, ArrayList<Piece> LAN_BOARD) {
+		int l = -1;
+		if(location > 63 || location < 0)
+			return 69;
+		else {
+			for (int i = 0; i < LAN_BOARD.size(); i++) {
+				if (location == LAN_BOARD.get(i).getLocation()) 
+					l = i;
+			}
+			return l;
+		}
 	}
 	
 	public void updateLegalMoves(int[] indexedPieceArray) {}
