@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Piece {
 	
+	public ArrayList<Integer> legalMoves = new ArrayList<Integer>();
+
 	public int up = -8;
 	public int down = 8;
 	public int left = -1;
@@ -14,6 +16,8 @@ public class Piece {
 	public int up_right = -7;
 	public int down_right = 9;
 	
+	public boolean hasMoved = false;
+	public int originalLocation;
 	
 	private int location;
 	private int color = 0; // 0 = White, 1 = Black
@@ -60,7 +64,7 @@ public class Piece {
 	// Methods
 	public void importValues(char n, int l) {
 
-		String url1 = "images/", url2 = ".png";
+		String url1 = "C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/", url2 = ".png";
 		
 		// Convert Char n to String (ASCII flex)
 		if((n + 0) > 97 && (n + 0) < 122)
@@ -68,6 +72,7 @@ public class Piece {
 		setType(n);
 		imgsrc = url1 + Integer.toString(type) + url2;
 		location = l;
+		originalLocation = l;
     
 	}
 
@@ -94,8 +99,12 @@ public class Piece {
 			return l;
 		}
 	}
-	
+
 	public void updateLegalMoves(int[] indexedPieceArray) {}
 	
 	public ArrayList<Integer> getLegalMoves() { return new ArrayList<Integer>(); }
+	public void resetLegalMoves() {
+		legalMoves.clear();
+	}
 }
+

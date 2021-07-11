@@ -126,8 +126,11 @@ public class chessboard implements Runnable {
 	public void run() {
 		try{
 			
-			// New panel for picking up a piece.
+			// Update check piece array and all piece legal moves.
 			updateCheckPiece(LAN_BOARD);
+			algorithm.updateAllPieces();
+
+			// New panel for picking up a piece.
 			JPanel panelInHand = new JPanel();
 			panelInHand.setOpaque(false);
 			panelInHand.setSize(64,64);
@@ -156,7 +159,6 @@ public class chessboard implements Runnable {
 				if(Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && holdPiece == false && messWithTheBoard == true) {
 					if(Mouse.clicked == true) {
 						labelnHand.setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
-						System.out.print("true");
 						holdPiece = true;
 						messWithTheBoard = false;
 						StringBuilder transparent = new StringBuilder(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc());
@@ -177,21 +179,36 @@ public class chessboard implements Runnable {
 				if(currentCursorType == Cursor.getDefaultCursor() && messWithTheBoard == false && holdPiece == true) {
 					
 					// Sets the icon for the square moved to and removes the icon from the original square.
-					pieceIconArray.get(Mouse.currentSquare).setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
-					panelInHand.setVisible(false);
+					//pieceIconArray.get(Mouse.currentSquare).setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
+					//panelInHand.setVisible(false);
 					
+					// If the square to drop on is a legal move.
+					if (LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().contains(Mouse.currentSquare)) {
+						System.out.println("That was a legal move!");
+
+						// Sets the icon for the square moved to and removes the icon from the original square.
+						pieceIconArray.get(Mouse.currentSquare).setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
+						panelInHand.setVisible(false);
+
 					// Update Piece ArrayList
-					if(Mouse.currentSquare != Mouse.originalSquare) {
-						updateCheckPiece(LAN_BOARD);
-						if (Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && Mouse.clicked == false) {
-							LAN_BOARD.remove(Piece.getPieceIndex(Mouse.currentSquare, LAN_BOARD));
+						if(Mouse.currentSquare != Mouse.originalSquare) {
+							updateCheckPiece(LAN_BOARD);
+							if (Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && Mouse.clicked == false) {
+								LAN_BOARD.remove(Piece.getPieceIndex(Mouse.currentSquare, LAN_BOARD));
+							}
+							pieceIconArray.get(Mouse.originalSquare).setIcon(null);	
+							LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).setLocation(Mouse.currentSquare);
 						}
-						pieceIconArray.get(Mouse.originalSquare).setIcon(null);	
-						LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).setLocation(Mouse.currentSquare);
+						
+						// Display update board with current pieces
+						updateCheckPiece(LAN_BOARD);
+						algorithm.updateAllPieces();
+
+					} else {
+						System.out.println("That was an illegal move!");
+						pieceIconArray.get(Mouse.originalSquare).setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
+						panelInHand.setVisible(false);
 					}
-					
-					// Display update board with current pieces
-					updateCheckPiece(LAN_BOARD);
 						
 					// After dropping a pice, we are no longer holding one and can mess with the board again.
 					holdPiece = false;					
