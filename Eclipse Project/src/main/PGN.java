@@ -8,6 +8,10 @@ public class PGN {
 	
 	static ArrayList<Tag> Tags = new ArrayList<Tag>();
 	static ArrayList<Move> Moves = new ArrayList<Move>();
+	static boolean turnOrder = false; // False is White, True is Black 
+	static int moveNumber = 1;
+	static boolean capture = false;
+	
 	
 	static class Move {
 		int moveNumber;
@@ -20,6 +24,10 @@ public class PGN {
 			algebraicNotationBlack = anb;
 		}
 		
+		Move(int m, String anw) {
+			moveNumber = m;
+			algebraicNotationWhite = anw;		
+		}
 		// Getters
 		public int getMoveNumber() { return moveNumber; }
 		public String getAlgebraicNotationWhite() { return algebraicNotationWhite; }
@@ -106,6 +114,56 @@ public class PGN {
 		}
 		Moves.get(Moves.size() - 1).algebraicNotationBlack += charPGN[charPGN.length - 1];
 	}
+	
+	public static void updatePGN(Piece pieceAtOriginalLocation, int currentSquare) {
+		
+		char letterIndex = (char) ((currentSquare % 8) + 97);
+		char pieceType = (char) pieceAtOriginalLocation.getType(pieceAtOriginalLocation.getType());
+		char letterIndexOriginal = (char) ((pieceAtOriginalLocation.getLocation() % 8) + 97);
+		int numberIndex = 8 - (currentSquare / 8);
+
+		
+		
+		if (Piece.isPiece(currentSquare, chessboard.LAN_BOARD))
+			capture = true;
+		else
+			capture = false;
+
+		// Now it's black's move
+		
+		
+		// If pawn , then dont display pieceType
+		if(pieceType == 'P')
+			pieceType = '\0';
+		
+		String moveAN;
+		
+		// PGN Notation to store the current half-move
+		if(capture && pieceType == '\0') { // Pawn capture.
+			System.out.printf("%cx%c%d ", letterIndexOriginal, letterIndex, numberIndex);
+			moveAN = Character.toString(letterIndexOriginal) + "x" + Character.toString(letterIndex) + Integer.toString(numberIndex);
+		} else if(capture) { // Other piece capture.
+			System.out.printf("%c%c%d ", pieceType, letterIndex, numberIndex);
+			moveAN = Character.toString(pieceType) + "x" + Character.toString(letterIndex) + Integer.toString(numberIndex);
+		} else { // Regular piece move. 
+			moveAN = Character.toString(pieceType) + Character.toString(letterIndex) + Integer.toString(numberIndex);
+			System.out.printf("%c%c%d ", pieceType, letterIndex, numberIndex);
+		}
+		// Only increase moveNumber after black moves
+		if (turnOrder)
+			moveNumber++;
+		
+		if(!turnOrder) { // White move, create new move.
+			turnOrder = true;
+			Moves.add(new Move(moveNumber, moveAN));
+		} else { // Black move, get old move.
+			turnOrder = false; 
+			Moves.get(moveNumber - 2).algebraicNotationBlack = moveAN;
+		}
+			
+		System.out.println(Moves.size());
+	}
+	
 	
 	public static String writePGN() {
 		

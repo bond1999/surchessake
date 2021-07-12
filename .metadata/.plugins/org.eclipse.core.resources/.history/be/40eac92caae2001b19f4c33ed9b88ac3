@@ -1,0 +1,62 @@
+package piece;
+import java.util.ArrayList;
+
+public class king extends main.Piece {
+	
+	public ArrayList<Integer> legalMoves = new ArrayList<Integer>();
+	public static int points = 1;
+	public boolean isInCheck = false;
+	
+	@Override
+	public ArrayList<Integer> getLegalMoves() {
+		super.getLegalMoves();
+		return legalMoves;
+	}
+	
+	@Override
+	public void updateLegalMoves(int[] indexedPieceArray) {	
+		super.updateLegalMoves(indexedPieceArray);
+	
+		// MOVES FOR KING
+		
+		// UP LEFT
+		if((super.getLocation() + up_left > -1) && (super.getLocation() + up_left < 64) && // In bounds.
+				(indexedPieceArray[super.getLocation() + up_left] % 2 != super.getColor() || // Opposite color to capture.
+				indexedPieceArray[super.getLocation() + up_left] == -1)) { // If the space is empty.
+			legalMoves.add(super.getLocation() + up_left);
+		}
+		
+		// UP
+		if((super.getLocation() + up > -1) && (super.getLocation() + up < 64) &&  // If in bounds.
+				(indexedPieceArray[super.getLocation() + up] % 2 != super.getColor() || // Opposite color to capture.
+				indexedPieceArray[super.getLocation() + up] == -1)) { // If the space is empty.
+			legalMoves.add(super.getLocation() + up);
+		}
+
+		
+		// UP RIGHT
+		if((super.getLocation() + up_right > -1) && (super.getLocation() + up_right < 64) &&  // In bounds.
+				indexedPieceArray[super.getLocation() + up_right] % 2 != super.getColor() && // Opposite color to capture.
+				indexedPieceArray[super.getLocation() + up_right] == -1) { // If the space is empty.
+			legalMoves.add(super.getLocation() + up_right);
+		}
+		
+		// LEFT
+
+		// RIGHT
+
+		// DOWN LEFT
+
+		// DOWN
+
+		// DOWN RIGHT
+
+		
+		// FUNCTION TO CHECK IF KING IS IN CHECK
+
+		// MOVES AVAILABLE GIVEN KING IS IN CHECK
+
+
+
+	}
+}

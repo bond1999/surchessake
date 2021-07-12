@@ -178,10 +178,6 @@ public class chessboard implements Runnable {
 				// Dropping a piece.
 				if(currentCursorType == Cursor.getDefaultCursor() && messWithTheBoard == false && holdPiece == true) {
 					
-					// Sets the icon for the square moved to and removes the icon from the original square.
-					//pieceIconArray.get(Mouse.currentSquare).setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
-					//panelInHand.setVisible(false);
-					
 					// If the square to drop on is a legal move.
 					if (LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().contains(Mouse.currentSquare)) {
 						System.out.println("That was a legal move!");
@@ -189,10 +185,13 @@ public class chessboard implements Runnable {
 						// Sets the icon for the square moved to and removes the icon from the original square.
 						pieceIconArray.get(Mouse.currentSquare).setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
 						panelInHand.setVisible(false);
-
-					// Update Piece ArrayList
+						
+						// Update Piece ArrayList
 						if(Mouse.currentSquare != Mouse.originalSquare) {
+							
+							PGN.updatePGN(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)), Mouse.currentSquare);
 							updateCheckPiece(LAN_BOARD);
+
 							if (Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && Mouse.clicked == false) {
 								LAN_BOARD.remove(Piece.getPieceIndex(Mouse.currentSquare, LAN_BOARD));
 							}
@@ -203,8 +202,9 @@ public class chessboard implements Runnable {
 						// Display update board with current pieces
 						updateCheckPiece(LAN_BOARD);
 						algorithm.updateAllPieces();
+						
 
-					} else {
+					} else { // If the square to drop on is NOT a legal move
 						System.out.println("That was an illegal move!");
 						pieceIconArray.get(Mouse.originalSquare).setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
 						panelInHand.setVisible(false);
@@ -215,8 +215,8 @@ public class chessboard implements Runnable {
 					messWithTheBoard = true;
 
 					// Displays all possible moves for each piece.
-					algorithm.displayAllPossibleMoves();
-
+//					algorithm.displayAllPossibleMoves();
+					
 				} // Dropping a piece.
 
 			} // while(true)

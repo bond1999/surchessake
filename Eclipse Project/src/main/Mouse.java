@@ -13,6 +13,7 @@ public class Mouse implements MouseListener {
 	static boolean clicked = false;
 	static int onChessboard;
 	static int currentSquare;
+	static int newSquare;
 	static int originalSquare;
 	
 	

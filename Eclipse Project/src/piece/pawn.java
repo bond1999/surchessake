@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class pawn extends main.Piece {
 
-	//public ArrayList<Integer> legalMoves = new ArrayList<Integer>();
 	public static int points = 1;
 	
 	@Override

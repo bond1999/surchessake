@@ -28,6 +28,24 @@ public class Piece {
 	public int getLocation() { return location; }
 	public int getColor() { return color; }
 	public int getType() { return type; }
+	public int getType(int type) { 		
+		switch(type) {
+			case 0:
+			case 1: return 'P';
+			case 2:
+			case 3: return 'R';
+			case 4:
+			case 5: return 'N';
+			case 6:
+			case 7: return 'B';
+			case 8:
+			case 9: return 'Q';
+			case 10:
+			case 11: return 'K';
+		}
+		return type;
+	
+	}
 	public String getImgsrc() { return imgsrc; }
 	
 	// Setters
@@ -64,7 +82,8 @@ public class Piece {
 	// Methods
 	public void importValues(char n, int l) {
 
-		String url1 = "C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/", url2 = ".png";
+//		String url1 = "C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/", url2 = ".png";
+		String url1 = "images/", url2 = ".png";
 		
 		// Convert Char n to String (ASCII flex)
 		if((n + 0) > 97 && (n + 0) < 122)

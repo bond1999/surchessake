@@ -16,21 +16,24 @@ public class knight extends main.Piece {
 	public void updateLegalMoves(int[] indexedPieceArray) {	
 		super.updateLegalMoves(indexedPieceArray);
 
+		// UP LEFT FORWARD
+		
 		// UP RIGHT FORWARD
-
-		// UP RIGHT SIDE
-
-		// DOWN RIGHT SIDE
-
-		// DOWN RIGHT BACKWARDS
-
-		// DOWN LEFT BACKWARDS
-
-		// DOWN LEFT SIDE
 
 		// UP LEFT SIDE
 
-		// UP LEFT FORWARD
+		// UP RIGHT SIDE
+
+		// DOWN LEFT SIDE
+		
+		// DOWN RIGHT SIDE
+
+		// DOWN LEFT BACKWARDS
+
+		// DOWN RIGHT BACKWARDS
+
+
+
 
 	
 		// NEED FUNCTION TO CHECK IF KING IS IN CHECK

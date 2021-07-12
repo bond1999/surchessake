@@ -57,10 +57,10 @@ public class algorithm {
 				
 			}
 
-			Scanner input = new Scanner(System.in);  // Create a Scanner object
-    		System.out.println("Enter anything to continue..");
-    		String userName = input.nextLine();  // Read user input
-    
+//			Scanner input = new Scanner(System.in);  // Create a Scanner object
+//    		System.out.println("Enter anything to continue..");
+//    		String userName = input.nextLine();  // Read user input
+//    
     		if (tempColor == Color.DARK_GRAY)
 				chessboard.squareArray.get(chessboard.LAN_BOARD.get(i).getLocation()).setBackground(Color.DARK_GRAY);
 			else
