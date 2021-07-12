@@ -2,8 +2,6 @@ package main;
 
 import java.util.ArrayList;
 
-import javax.swing.text.AbstractDocument.Content;
-
 public class PGN {
 	
 	static ArrayList<Tag> Tags = new ArrayList<Tag>();
@@ -33,6 +31,13 @@ public class PGN {
 		public String getAlgebraicNotationWhite() { return algebraicNotationWhite; }
 		public String getAlgebraicNotationBlack() { return algebraicNotationBlack; }
 		
+	}
+	
+	public String getLastMove() {
+		if (!turnOrder)
+			return Moves.get(Moves.size() - 1).getAlgebraicNotationBlack();
+		else
+			return Moves.get(Moves.size() - 1).getAlgebraicNotationWhite();
 	}
 	
 	static class Tag {

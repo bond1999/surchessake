@@ -1,5 +1,4 @@
 package main;
-import java.util.Scanner;
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -54,7 +53,6 @@ public class algorithm {
 				else
 					legalMoveColors.add(Color.WHITE);
 				chessboard.squareArray.get(chessboard.LAN_BOARD.get(i).getLegalMoves().get(j)).setBackground(Color.YELLOW);
-				
 			}
 
 //			Scanner input = new Scanner(System.in);  // Create a Scanner object
@@ -67,20 +65,14 @@ public class algorithm {
 				chessboard.squareArray.get(chessboard.LAN_BOARD.get(i).getLocation()).setBackground(Color.WHITE);
 
 	 		for (int j = 0; j < legalMoveColors.size(); j++) {
-
 				if (legalMoveColors.get(j) == Color.DARK_GRAY) {
 					main.chessboard.squareArray.get(chessboard.LAN_BOARD.get(i).getLegalMoves().get(j)).setBackground(Color.DARK_GRAY);
 				} else if (legalMoveColors.get(j) != null) {
 					main.chessboard.squareArray.get(chessboard.LAN_BOARD.get(i).getLegalMoves().get(j)).setBackground(Color.WHITE);
-				}
-				
+				}	
 			}
-
 			legalMoveColors.clear();
-
 		}
-		
+		System.out.printf("Total possible Legal Moves = %d", sum);
 	}
-
-
 }

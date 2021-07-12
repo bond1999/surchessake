@@ -1,14 +1,15 @@
 package main;
 
 import java.awt.*;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class chessboard implements Runnable {
 
-	static JFrame window = new JFrame("Surchessake");
-	static JPanel screen = new JPanel();
-	static JPanel board = new JPanel();
+	static JFrame applicationWindow = new JFrame("Surchessake");
+	static JPanel playArea = new JPanel();
+	static JPanel chessboard = new JPanel();
 	
 	static Cursor currentCursorType = Cursor.getDefaultCursor();
 	static PGN pgnMoves;
@@ -30,36 +31,36 @@ public class chessboard implements Runnable {
 		
 	}
 	
-	// Function to display the Java JFrame window with the chessboard layers
-	public static void displayBoard() {
+	// Function to display the Java JFrame applicationWindow with the chesschessboard layers
+	public static void displayChessboard() {
 
-		// The JFrame window to display the game
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setSize(640, 640);
-		window.setLayout(null);
+		// The JFrame applicationWindow to display the game
+		applicationWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		applicationWindow.setSize(720, 640);
+		applicationWindow.setLayout(null);
 		
-		// The JPanel screen that sits in the JFrame window and contains the board
-		screen.setSize(640, 640);
-		screen.setLayout(null);
-		screen.setBackground(Color.LIGHT_GRAY);
+		// The JPanel playArea that sits in the JFrame applicationWindow and contains the chessboard
+		playArea.setSize(640, 640);
+		playArea.setLayout(null);
+		playArea.setBackground(Color.pink);
 		
-		// The JPanel that displays the chess board and sits in the screen
-		board.setSize(512, 512);
-		board.setLocation(64, 44);
-		board.setBackground(Color.BLACK);
-		board.setLayout(new GridLayout(8, 8, 0, 0));
-
+		// The JPanel that displays the chess chessboard and sits in the playArea
+		chessboard.setSize(512, 512);
+		chessboard.setLocation(44, 44);
+		chessboard.setBackground(null);
+		chessboard.setLayout(new GridLayout(8, 8, 0, 0));
+		
 		int squareIndex = 0;
 		int flag = 0;
 
-		// For loop to add Mouse Listeners to each Square, 64 of which are added to the Chessboard
+		// For loop to add Mouse Listeners to each Square, 64 of which are added to the Chesschessboard
 		for(int i = 0; i < 8; i++) { 
 			for(int j = 0; j < 8; j++) {
 				
 				JPanel square = new JPanel();
 
 				// Beautiful ASCII fleing.
-				char letter = (char) (j + 65);
+				char letter = (char) (j + 97);
 				char number = (char) (8 - i + 48);
 
 				square.setSize(64,64);
@@ -83,7 +84,7 @@ public class chessboard implements Runnable {
 				// If the square is the location of a piece, get correct icon.
 				for(int k=0; k<LAN_BOARD.size(); k++) {
 					if(squareIndex == LAN_BOARD.get(k).getLocation())
-						piece.setIcon(new ImageIcon(LAN_BOARD.get(k).getImgsrc()));
+						piece.setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(squareIndex, LAN_BOARD)).getImgsrc()));
 				}
 
 				// Add the piece to the array and square.
@@ -97,11 +98,11 @@ public class chessboard implements Runnable {
 
 				square.setVisible(true);
 				square.setLayout(null);
-				board.add(square);
+				chessboard.add(square);
 
 				squareIndex++;
 
-			} // For each column of the board.
+			} // For each column of the chessboard.
 		
 			// Flags for alternating square color.
 			if (flag == 0)
@@ -109,23 +110,24 @@ public class chessboard implements Runnable {
 			else 
 				flag = 0;
 				
-		} // For each row of the board.	
+		} // For each row of the chessboard.	
 
 		// Set visibility.
-		board.setVisible(true);
-		screen.setVisible(true);
-		window.setVisible(true);
+		chessboard.setVisible(true);
+		playArea.setVisible(true);
+		applicationWindow.setVisible(true);
 		
-		// Add board to screen, and screen to window.
-		screen.add(board);
-		window.add(screen);
+		// Add chessboard to playArea, and playArea to applicationWindow.
+		playArea.add(chessboard);
+		applicationWindow.add(playArea);
 		
-	} // displayBoard()
+	} // displaychessboard()
 	
 	// Live Piece Drag
 	public void run() {
 		try{
 			
+			displayChessboard();
 			// Update check piece array and all piece legal moves.
 			updateCheckPiece(LAN_BOARD);
 			algorithm.updateAllPieces();
@@ -144,48 +146,61 @@ public class chessboard implements Runnable {
 			// Add the label to the panel.
 			panelInHand.add(labelnHand);
 
-			// Make window glass pane.
-			window.setGlassPane(panelInHand);
-			window.getGlassPane().setSize(64,64);
+			// Make applicationWindow glass pane.
+			applicationWindow.setGlassPane(panelInHand);
+			applicationWindow.getGlassPane().setSize(64,64);
 			
-			// Start off not holding a piece, and able to mess with the board.
+			// Start off not holding a piece, and able to mess with the chessboard.
 			boolean holdPiece = false;
-			boolean messWithTheBoard = true;
+			boolean messWithThechessboard = true;
 			
 			while(true) {
 				Mouse.currentPointerLocation = MouseInfo.getPointerInfo().getLocation();
 				
 				// If the mouse is on a square with a piece.
-				if(Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && holdPiece == false && messWithTheBoard == true) {
+				if(Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && holdPiece == false && messWithThechessboard == true) {
 					if(Mouse.clicked == true) {
 						labelnHand.setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
 						holdPiece = true;
-						messWithTheBoard = false;
+						messWithThechessboard = false;
 						StringBuilder transparent = new StringBuilder(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc());
         				transparent.insert(7, 't');
-						pieceIconArray.get(Mouse.originalSquare).setIcon(new ImageIcon(transparent.toString()));
+        				pieceIconArray.get(Mouse.originalSquare).setIcon(new ImageIcon(transparent.toString()));
 					}
 				}
 				
-				// While holding a piece (you can't mess with the board while holding the piece)
-				if(currentCursorType == Cursor.getPredefinedCursor(12) && holdPiece == true && messWithTheBoard == false) {
-					window.setCursor(currentCursorType);
+				// While holding a piece (you can't mess with the chessboard while holding the piece)
+				if(currentCursorType == Cursor.getPredefinedCursor(12) && holdPiece == true && messWithThechessboard == false) {
+					applicationWindow.setCursor(currentCursorType);
 					panelInHand.setLocation(Mouse.currentPointerLocation.x - 32, Mouse.currentPointerLocation.y - 64);
 					panelInHand.setVisible(true);
-					messWithTheBoard = false;
+					
+					
+					// Legal Moves for the current piece are highlighted in yellow
+					for(int i = 0; i < LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().size(); i++)
+						if(pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).getIcon() == null)
+							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
+								.setIcon(new ImageIcon("images/legalmove.png"));
+					
+					messWithThechessboard = false;
 				}
 				
 				// Dropping a piece.
-				if(currentCursorType == Cursor.getDefaultCursor() && messWithTheBoard == false && holdPiece == true) {
+				if(currentCursorType == Cursor.getDefaultCursor() && messWithThechessboard == false && holdPiece == true) {
 					
 					// If the square to drop on is a legal move.
 					if (LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().contains(Mouse.currentSquare)) {
 						System.out.println("That was a legal move!");
-
+						
+						// Legal Moves for the current piece are reset back to original
+						for(int i = 0; i < LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().size(); i++)
+							if(checkPiece[LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)] == -1)
+								pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).setIcon(null);
+						
 						// Sets the icon for the square moved to and removes the icon from the original square.
 						pieceIconArray.get(Mouse.currentSquare).setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
 						panelInHand.setVisible(false);
-						
+												
 						// Update Piece ArrayList
 						if(Mouse.currentSquare != Mouse.originalSquare) {
 							
@@ -199,9 +214,14 @@ public class chessboard implements Runnable {
 							LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).setLocation(Mouse.currentSquare);
 						}
 						
-						// Display update board with current pieces
+						// Display update chessboard with current pieces
 						updateCheckPiece(LAN_BOARD);
 						algorithm.updateAllPieces();
+						
+						// Not yet implemented, but last move played displayer -
+//						squareArray.get(Mouse.originalSquare).setBackground(new Color(102, 102, 255));
+//						squareArray.get(Mouse.newSquare).setBackground(new Color(153, 153, 255));
+						
 						
 
 					} else { // If the square to drop on is NOT a legal move
@@ -210,9 +230,9 @@ public class chessboard implements Runnable {
 						panelInHand.setVisible(false);
 					}
 						
-					// After dropping a pice, we are no longer holding one and can mess with the board again.
+					// After dropping a pice, we are no longer holding one and can mess with the chessboard again.
 					holdPiece = false;					
-					messWithTheBoard = true;
+					messWithThechessboard = true;
 
 					// Displays all possible moves for each piece.
 //					algorithm.displayAllPossibleMoves();
