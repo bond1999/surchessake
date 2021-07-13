@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class rook extends main.Piece {
 	
-	public ArrayList<Integer> legalMoves = new ArrayList<Integer>();
 	public static int points = 5;
 	
 	@Override
@@ -11,17 +10,80 @@ public class rook extends main.Piece {
 		super.getLegalMoves();
 		return legalMoves;
 	}
+	
 	@Override
 	public void updateLegalMoves(int[] indexedPieceArray) {	
 		super.updateLegalMoves(indexedPieceArray);
 
+//		System.out.printf("Current Piece: %d, %d, %c, %s", this.getLocation(), this.getColor(), this.getType(this.getType()), this.getImgsrc());
 		// UP
-
+		int i = 1;
+		while((super.getLocation() + up * i > -1) && (super.getLocation() + up * i < 64) && // In bounds.
+				(indexedPieceArray[super.getLocation() + up * i] % 2 != super.getColor() || // Opposite color to capture.
+				indexedPieceArray[super.getLocation() + up * i] == -1)) { // If the space is empty.
+				
+				legalMoves.add(super.getLocation() + up * i);
+				if(indexedPieceArray[super.getLocation() + up * i] != -1)
+					break;
+				i++;
+		}
+		
 		// DOWN
+		i = 1;
+		while((super.getLocation() + down * i > -1) && (super.getLocation() + down * i < 64) && // In bounds.
+				(indexedPieceArray[super.getLocation() + down * i] % 2 != super.getColor() || // Opposite color to capture.
+				indexedPieceArray[super.getLocation() + down * i] == -1)) { // If the space is empty.
+				
+				legalMoves.add(super.getLocation() + down * i);
+				if(indexedPieceArray[super.getLocation() + down * i] != -1)
+					break;
+				i++;
+		}
 
 		// LEFT
+		int flag = 0;
+		i = 1;
+		while((super.getLocation() + left * i > -1) && (super.getLocation() + left * i < 64) && // In bounds.
+				(indexedPieceArray[super.getLocation() + left * i] % 2 != super.getColor() || // Opposite color to capture.
+				indexedPieceArray[super.getLocation() + left * i] == -1)) { // If the space is empty.
+				if((super.getColor() == 0 && (super.getLocation() + left * i) % 8 == 0) || // If it is a white piece
+						(super.getColor() == 1 && (super.getLocation() + left * i) % 8 == 7)) // If it is a black piece
+					flag = 1;
+				if((super.getColor() == 0 && super.getLocation() % 8 != 0) || // If it is a white piece
+						(super.getColor() == 1 && super.getLocation() % 8 != 7)) { // If it is white piece
+					legalMoves.add(super.getLocation() + left * i);
+					System.out.printf("%s Rook Left gives %d%n", super.getColor(super.getColor()), super.getLocation() + left * i);
+					if (flag == 1)
+						break;
+				}
+				if(indexedPieceArray[super.getLocation() + left * i] != -1)
+					break;
+				i++;
+		}
+
 
 		// RIGHT
+		flag = 0;
+		i = 1;
+		while((super.getLocation() + right * i > -1) && (super.getLocation() + right * i < 64) && // In bounds.
+				(indexedPieceArray[super.getLocation() + right * i] % 2 != super.getColor() || // Opposite color to capture.
+				indexedPieceArray[super.getLocation() + right * i] == -1)) { // If the space is empty.
+				
+				if((super.getColor() == 0 && (super.getLocation() + right * i) % 8 == 7) ||
+						(super.getColor() == 1 && (super.getLocation() + right * i) % 8 == 0))
+					flag = 1;
+				if((super.getColor() == 0 && super.getLocation() % 8 != 7) || // If it is a white piece
+						(super.getColor() == 1 && super.getLocation() % 8 != 0)) { // If it is white piece
+					legalMoves.add(super.getLocation() + right * i);
+					System.out.printf("%s Rook Right gives %d%n", super.getColor(super.getColor()), super.getLocation() + right * i);
+					if (flag == 1)
+						break;
+				}
+				if(indexedPieceArray[super.getLocation() + right * i] != -1)
+					break;
+				i++;
+		}
+		
 		
 		// NEED FUNCTION TO CHECK IF KING IS IN CHECK
 		

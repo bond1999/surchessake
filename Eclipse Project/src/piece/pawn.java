@@ -33,14 +33,16 @@ public class pawn extends main.Piece {
 		if((super.getLocation() + up_left > -1) && (super.getLocation() + up_left < 64) && // In bounds.
 				indexedPieceArray[super.getLocation() + up_left] % 2 != super.getColor() && // Opposite color to capture.
 				indexedPieceArray[super.getLocation() + up_left] != -1) { // Not a null space.
-			legalMoves.add(super.getLocation() + up_left);
+			if((super.getLocation()) % 8 != 0)
+				legalMoves.add(super.getLocation() + up_left);
 		}
 		
 		// UP RIGHT
 		if((super.getLocation() + up_right > -1) && (super.getLocation() + up_right < 64) &&  // In bounds.
 				indexedPieceArray[super.getLocation() + up_right] % 2 != super.getColor() && // Opposite color to capture.
 				indexedPieceArray[super.getLocation() + up_right] != -1) { // Not a null space.
-			legalMoves.add(super.getLocation() + up_right);
+			if((super.getLocation()) % 8 != 7)
+				legalMoves.add(super.getLocation() + up_right);
 		}
 
 		// NEED PREVIOUS MOVES TRACKER TO IMPLEMENT EN PASSANT

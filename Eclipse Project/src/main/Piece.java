@@ -27,6 +27,12 @@ public class Piece {
 	// Getters
 	public int getLocation() { return location; }
 	public int getColor() { return color; }
+	public String getColor(int color) { 
+		if (color == 0)
+			return "White";
+		else 
+			return "Black";
+	}
 	public int getType() { return type; }
 	public int getType(int type) { 		
 		switch(type) {
