@@ -179,9 +179,14 @@ public class chessboard implements Runnable {
 					// Legal Moves for the current piece are highlighted in yellow
 					for(int i = 0; i < LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().size(); i++)
 					//	if(pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).getIcon() == null)
-							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalmove.png"));
+							if (!Piece.isPiece(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD))
+								pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
+									.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalmove.png"));
 								// images/legalmove.png
+							else
+							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
+								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalcapture.png"));
+
 					
 					messWithThechessboard = false;
 				}

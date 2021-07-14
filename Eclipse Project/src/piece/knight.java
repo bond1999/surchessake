@@ -36,7 +36,7 @@ public class knight extends main.Piece {
 
 			}
 		} else {
-			if ((super.getLocation() % 8 != 7) && (super.getLocation() / 8 != 6) && (super.getLocation() / 8 != 7) && 
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() <= 47) && 
 				(super.getLocation() + N_up_left > -1) && (super.getLocation() + N_up_left < 64) && 
 				(indexedPieceArray[super.getLocation() + N_up_left] % 2 != super.getColor() ||
 				indexedPieceArray[super.getLocation() + N_up_left] == -1)) {
@@ -58,11 +58,12 @@ public class knight extends main.Piece {
 
 			}
 		} else {
-			if ((super.getLocation() % 8 != 0) && (super.getLocation() / 8 != 6) && (super.getLocation() / 8 != 7) && 
-				(super.getLocation() + N_up_left > -1) && (super.getLocation() + N_up_left < 64) && 
-				(indexedPieceArray[super.getLocation() + N_up_left] % 2 != super.getColor() ||
-				indexedPieceArray[super.getLocation() + N_up_left] == -1)) {
-					legalMoves.add(super.getLocation() + N_up_left);
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() <= 47) && 
+				(super.getLocation() + N_up_right > -1) && (super.getLocation() + N_up_right < 64) && 
+				(indexedPieceArray[super.getLocation() + N_up_right] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_up_right] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_up_right);
 
 			}
 		}
@@ -77,12 +78,13 @@ public class knight extends main.Piece {
 					legalMoves.add(super.getLocation() + N_up_left_side);
 			}
 		} else {
-			if ((super.getLocation() % 8 != 7) && (super.getLocation() % 8 != 6) && (super.getLocation() / 8 != 7) && 
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() % 8 != 6) && (super.getLocation() <= 55) && 
 				(super.getLocation() + N_up_left_side > -1) && (super.getLocation() + N_up_left_side < 64) && 
 				(indexedPieceArray[super.getLocation() + N_up_left_side] % 2 != super.getColor() ||
 				indexedPieceArray[super.getLocation() + N_up_left_side] == -1)) {
 					
 					legalMoves.add(super.getLocation() + N_up_left_side);
+
 			}
 		}
 
@@ -97,7 +99,7 @@ public class knight extends main.Piece {
 
 			}
 		} else {
-			if ((super.getLocation() % 8 != 0) && (super.getLocation() % 8 != 1) && (super.getLocation() / 8 != 7) && 
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() % 8 != 1) && (super.getLocation() <= 55) && 
 				(super.getLocation() + N_up_right_side > -1) && (super.getLocation() + N_up_right_side < 64) && 
 				(indexedPieceArray[super.getLocation() + N_up_right_side] % 2 != super.getColor() ||
 				indexedPieceArray[super.getLocation() + N_up_right_side] == -1)) {
@@ -118,11 +120,11 @@ public class knight extends main.Piece {
 
 			}
 		} else {
-			if ((super.getLocation() % 8 != 7) && (super.getLocation() % 8 != 6) && (super.getLocation() / 8 != 7) && 
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() % 8 != 6) && (super.getLocation() >= 8) && 
 				(super.getLocation() + N_back_left_side > -1) && (super.getLocation() + N_back_left_side < 64) && 
 				(indexedPieceArray[super.getLocation() + N_back_left_side] % 2 != super.getColor() ||
 				indexedPieceArray[super.getLocation() + N_back_left_side] == -1)) {
-
+					
 					legalMoves.add(super.getLocation() + N_back_left_side);
 
 			}
@@ -139,7 +141,7 @@ public class knight extends main.Piece {
 
 			}
 		} else {
-			if ((super.getLocation() % 8 != 0) && (super.getLocation() % 8 != 1) && (super.getLocation() / 8 != 7) && 
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() % 8 != 1) && (super.getLocation() >= 8) && 
 				(super.getLocation() + N_back_right_side > -1) && (super.getLocation() + N_back_right_side < 64) && 
 				(indexedPieceArray[super.getLocation() + N_back_right_side] % 2 != super.getColor() ||
 				indexedPieceArray[super.getLocation() + N_back_right_side] == -1)) {
@@ -160,7 +162,7 @@ public class knight extends main.Piece {
 
 			}
 		} else {
-			if ((super.getLocation() % 8 != 7) && (super.getLocation() / 8 != 0) && (super.getLocation() / 8 != 1) && 
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() >= 16) && 
 				(super.getLocation() + N_back_left > -1) && (super.getLocation() + N_back_left < 64) && 
 				(indexedPieceArray[super.getLocation() + N_back_left] % 2 != super.getColor() ||
 				indexedPieceArray[super.getLocation() + N_back_left] == -1)) {
@@ -181,7 +183,7 @@ public class knight extends main.Piece {
 
 			}
 		} else {
-			if ((super.getLocation() % 8 != 0) && (super.getLocation() / 8 != 0) && (super.getLocation() / 8 != 1) && 
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() >= 16) && 
 				(super.getLocation() + N_back_right > -1) && (super.getLocation() + N_back_right < 64) && 
 				(indexedPieceArray[super.getLocation() + N_back_right] % 2 != super.getColor() ||
 				indexedPieceArray[super.getLocation() + N_back_right] == -1)) {
@@ -190,7 +192,6 @@ public class knight extends main.Piece {
 
 			}
 		}
-
 
 	
 		// NEED FUNCTION TO CHECK IF KING IS IN CHECK
