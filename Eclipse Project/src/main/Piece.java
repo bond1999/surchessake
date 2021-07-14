@@ -15,6 +15,15 @@ public class Piece {
 	public int down_left = 7;
 	public int up_right = -7;
 	public int down_right = 9;
+
+	public int N_up_left = -17;
+	public int N_up_left_side = -10;
+	public int N_back_left_side = 6;
+	public int N_back_left = 15;
+	public int N_up_right = -15;
+	public int N_up_right_side = -6;
+	public int N_back_right_side = 10;
+	public int N_back_right = 17;
 	
 	public boolean hasMoved = false;
 	public int originalLocation;
@@ -79,6 +88,12 @@ public class Piece {
 			
 			up_left *= -1;	up_right *= -1;
 			down_left *= -1; down_right *= -1;
+
+			N_up_left *= -1; N_up_right *= -1;
+			N_up_left_side *= -1; N_up_right_side *= -1;
+			N_back_left_side *= -1; N_back_right_side *= -1;
+			N_back_left *= -1; N_back_right *= -1;
+
 		}
 		
 	} 
@@ -88,8 +103,8 @@ public class Piece {
 	// Methods
 	public void importValues(char n, int l) {
 
-//		String url1 = "C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/", url2 = ".png";
-		String url1 = "images/", url2 = ".png";
+		String url1 = "C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/", url2 = ".png";
+		//String url1 = "images/", url2 = ".png";
 		
 		// Convert Char n to String (ASCII flex)
 		if((n + 0) > 97 && (n + 0) < 122)

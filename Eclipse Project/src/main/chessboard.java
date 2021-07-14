@@ -159,7 +159,7 @@ public class chessboard implements Runnable {
 				
 				// If the mouse is on a square with a piece.
 				if(Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && holdPiece == false && messWithThechessboard == true) {
-					if(Mouse.clicked == true) {
+					if(Mouse.clicked == true && LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getColor() == PGN.turnOrder) {
 						labelnHand.setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
 						holdPiece = true;
 						messWithThechessboard = false;
@@ -178,9 +178,10 @@ public class chessboard implements Runnable {
 					
 					// Legal Moves for the current piece are highlighted in yellow
 					for(int i = 0; i < LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().size(); i++)
-						if(pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).getIcon() == null)
+					//	if(pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).getIcon() == null)
 							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-								.setIcon(new ImageIcon("images/legalmove.png"));
+								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalmove.png"));
+								// images/legalmove.png
 					
 					messWithThechessboard = false;
 				}

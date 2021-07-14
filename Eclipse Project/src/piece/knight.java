@@ -15,23 +15,181 @@ public class knight extends main.Piece {
 	public void updateLegalMoves(int[] indexedPieceArray) {	
 		super.updateLegalMoves(indexedPieceArray);
 
+		// while((super.getLocation() + up * i > -1) && (super.getLocation() + up * i < 64) && // In bounds.
+		// 		(indexedPieceArray[super.getLocation() + up * i] % 2 != super.getColor() || // Opposite color to capture.
+		// 		indexedPieceArray[super.getLocation() + up * i] == -1)) { // If the space is empty.
+				
+		// 		legalMoves.add(super.getLocation() + up * i);
+		// 		if(indexedPieceArray[super.getLocation() + up * i] != -1)
+		// 			break;
+		// 		i++;
+		// }
+
 		// UP LEFT FORWARD
-		
+		if (super.getColor() == 0) {
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() / 8 != 1) && (super.getLocation() / 8 != 0) && 
+				(super.getLocation() + N_up_left > -1) && (super.getLocation() + N_up_left < 64) && 
+				(indexedPieceArray[super.getLocation() + N_up_left] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_up_left] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_up_left);
+
+			}
+		} else {
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() / 8 != 6) && (super.getLocation() / 8 != 7) && 
+				(super.getLocation() + N_up_left > -1) && (super.getLocation() + N_up_left < 64) && 
+				(indexedPieceArray[super.getLocation() + N_up_left] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_up_left] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_up_left);
+
+			}
+		}
+
+		System.out.printf("%s Knight has %d as upright%n", super.getColor(super.getColor()), super.getLocation() + N_up_right);
 		// UP RIGHT FORWARD
+		if (super.getColor() == 0) {
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() / 8 != 0) && (super.getLocation() / 8 != 1) && 
+				(super.getLocation() + N_up_right > -1) && (super.getLocation() + N_up_right < 64) && 
+				(indexedPieceArray[super.getLocation() + N_up_right] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_up_right] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_up_right);
+
+			}
+		} else {
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() / 8 != 6) && (super.getLocation() / 8 != 7) && 
+				(super.getLocation() + N_up_left > -1) && (super.getLocation() + N_up_left < 64) && 
+				(indexedPieceArray[super.getLocation() + N_up_left] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_up_left] == -1)) {
+					legalMoves.add(super.getLocation() + N_up_left);
+
+			}
+		}
 
 		// UP LEFT SIDE
+		if (super.getColor() == 0) {
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() % 8 != 1) && (super.getLocation() / 8 != 0) && 
+				(super.getLocation() + N_up_left_side > -1) && (super.getLocation() + N_up_left_side < 64) && 
+				(indexedPieceArray[super.getLocation() + N_up_left_side] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_up_left_side] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_up_left_side);
+			}
+		} else {
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() % 8 != 6) && (super.getLocation() / 8 != 7) && 
+				(super.getLocation() + N_up_left_side > -1) && (super.getLocation() + N_up_left_side < 64) && 
+				(indexedPieceArray[super.getLocation() + N_up_left_side] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_up_left_side] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_up_left_side);
+			}
+		}
 
 		// UP RIGHT SIDE
+		if (super.getColor() == 0) {
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() % 8 != 6) && (super.getLocation() / 8 != 0) && 
+				(super.getLocation() + N_up_right_side > -1) && (super.getLocation() + N_up_right_side < 64) && 
+				(indexedPieceArray[super.getLocation() + N_up_right_side] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_up_right_side] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_up_right_side);
 
-		// DOWN LEFT SIDE
+			}
+		} else {
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() % 8 != 1) && (super.getLocation() / 8 != 7) && 
+				(super.getLocation() + N_up_right_side > -1) && (super.getLocation() + N_up_right_side < 64) && 
+				(indexedPieceArray[super.getLocation() + N_up_right_side] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_up_right_side] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_up_right_side);
+
+			}
+		}
+
+		// BACK LEFT SIDE
+		if (super.getColor() == 0) {
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() % 8 != 1) && (super.getLocation() / 8 != 0) && 
+				(super.getLocation() + N_back_left_side > -1) && (super.getLocation() + N_back_left_side < 64) && 
+				(indexedPieceArray[super.getLocation() + N_back_left_side] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_back_left_side] == -1)) {
+
+					legalMoves.add(super.getLocation() + N_back_left_side);
+
+			}
+		} else {
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() % 8 != 6) && (super.getLocation() / 8 != 7) && 
+				(super.getLocation() + N_back_left_side > -1) && (super.getLocation() + N_back_left_side < 64) && 
+				(indexedPieceArray[super.getLocation() + N_back_left_side] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_back_left_side] == -1)) {
+
+					legalMoves.add(super.getLocation() + N_back_left_side);
+
+			}
+		}
 		
-		// DOWN RIGHT SIDE
+		// BACK RIGHT SIDE
+		if (super.getColor() == 0) {
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() % 8 != 6) && (super.getLocation() / 8 != 0) && 
+				(super.getLocation() + N_back_right_side > -1) && (super.getLocation() + N_back_right_side < 64) && 
+				(indexedPieceArray[super.getLocation() + N_back_right_side] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_back_right_side] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_back_right_side);
 
-		// DOWN LEFT BACKWARDS
+			}
+		} else {
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() % 8 != 1) && (super.getLocation() / 8 != 7) && 
+				(super.getLocation() + N_back_right_side > -1) && (super.getLocation() + N_back_right_side < 64) && 
+				(indexedPieceArray[super.getLocation() + N_back_right_side] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_back_right_side] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_back_right_side);
 
-		// DOWN RIGHT BACKWARDS
+			}
+		}
 
+		// BACK LEFT 
+		if (super.getColor() == 0) {
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() / 8 != 7) && (super.getLocation() / 8 != 6) && 
+				(super.getLocation() + N_back_left > -1) && (super.getLocation() + N_back_left < 64) && 
+				(indexedPieceArray[super.getLocation() + N_back_left] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_back_left] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_back_left);
 
+			}
+		} else {
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() / 8 != 0) && (super.getLocation() / 8 != 1) && 
+				(super.getLocation() + N_back_left > -1) && (super.getLocation() + N_back_left < 64) && 
+				(indexedPieceArray[super.getLocation() + N_back_left] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_back_left] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_back_left);
+
+			}
+		}
+
+		// BACK RIGHT
+		if (super.getColor() == 0) {
+			if ((super.getLocation() % 8 != 7) && (super.getLocation() / 8 != 7) && (super.getLocation() / 8 != 6) && 
+				(super.getLocation() + N_back_right > -1) && (super.getLocation() + N_back_right < 64) && 
+				(indexedPieceArray[super.getLocation() + N_back_right] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_back_right] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_back_right);
+
+			}
+		} else {
+			if ((super.getLocation() % 8 != 0) && (super.getLocation() / 8 != 0) && (super.getLocation() / 8 != 1) && 
+				(super.getLocation() + N_back_right > -1) && (super.getLocation() + N_back_right < 64) && 
+				(indexedPieceArray[super.getLocation() + N_back_right] % 2 != super.getColor() ||
+				indexedPieceArray[super.getLocation() + N_back_right] == -1)) {
+					
+					legalMoves.add(super.getLocation() + N_back_right);
+
+			}
+		}
 
 
 	

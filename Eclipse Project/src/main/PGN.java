@@ -6,7 +6,7 @@ public class PGN {
 	
 	static ArrayList<Tag> Tags = new ArrayList<Tag>();
 	static ArrayList<Move> Moves = new ArrayList<Move>();
-	static boolean turnOrder = false; // False is White, True is Black 
+	static int turnOrder = 0; // 0 is White, 1 is Black 
 	static int moveNumber = 1;
 	static boolean capture = false;
 	
@@ -34,7 +34,7 @@ public class PGN {
 	}
 	
 	public String getLastMove() {
-		if (!turnOrder)
+		if (turnOrder == 1)
 			return Moves.get(Moves.size() - 1).getAlgebraicNotationBlack();
 		else
 			return Moves.get(Moves.size() - 1).getAlgebraicNotationWhite();
@@ -155,14 +155,14 @@ public class PGN {
 			System.out.printf("%c%c%d ", pieceType, letterIndex, numberIndex);
 		}
 		// Only increase moveNumber after black moves
-		if (turnOrder)
+		if (turnOrder == 1)
 			moveNumber++;
 		
-		if(!turnOrder) { // White move, create new move.
-			turnOrder = true;
+		if(turnOrder == 0) { // White move, create new move.
+			turnOrder = 1;
 			Moves.add(new Move(moveNumber, moveAN));
 		} else { // Black move, get old move.
-			turnOrder = false; 
+			turnOrder = 0; 
 			Moves.get(moveNumber - 2).algebraicNotationBlack = moveAN;
 		}
 			
