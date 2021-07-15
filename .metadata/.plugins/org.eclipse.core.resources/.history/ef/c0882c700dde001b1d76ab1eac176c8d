@@ -1,5 +1,0 @@
-package piece;
-
-public class bishop extends main.Piece {
-
-}

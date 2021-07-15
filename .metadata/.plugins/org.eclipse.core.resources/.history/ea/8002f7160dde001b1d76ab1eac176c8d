@@ -1,9 +1,0 @@
-package piece;
-
-public class king extends main.Piece {
-	
-	public void updateLegalMoves(int[] indexedPieceArray) {
-		
-	}
-
-}

@@ -1,5 +1,0 @@
-package piece;
-
-public class rook extends main.Piece {
-
-}

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Location"/>
+		<item key="selection" value="labelInHand"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="labelnHand"/>
 			<item value="location"/>
 			<item value="LAN_chessboard"/>
 			<item value="board"/>
@@ -22,9 +23,9 @@
 			<item value="getColor"/>
 			<item value="space"/>
 			<item value="BSN"/>
-			<item value="pieceInHand"/>
 		</list>
 		<list key="replacehistory">
+			<item value="labelInHand"/>
 			<item value="LAN_BOARD"/>
 			<item value="chessboard"/>
 			<item value="playArea"/>

@@ -1,5 +1,0 @@
-package piece;
-
-public class king extends main.Piece {
-
-}

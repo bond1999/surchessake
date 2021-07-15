@@ -1,7 +1,0 @@
-package piece;
-
-public class pawn extends main.Piece {
-
-	ArrayList<Integer> legalMoves = new ArrayList<Integer>();
-	
-}

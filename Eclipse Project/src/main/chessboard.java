@@ -88,7 +88,9 @@ public class chessboard implements Runnable {
 				}
 
 				// Add the piece to the array and square.
-				pieceIconArray.add(piece);
+				piece.setHorizontalAlignment(SwingConstants.CENTER);
+		        piece.setVerticalAlignment(SwingConstants.CENTER);
+		        pieceIconArray.add(piece);
 				piece.setVisible(true);
 				piece.setSize(64,64);
 				square.add(piece);
@@ -137,14 +139,18 @@ public class chessboard implements Runnable {
 			panelInHand.setOpaque(false);
 			panelInHand.setSize(64,64);
 			panelInHand.setLayout(null);
-			
+			panelInHand.setAlignmentX(SwingConstants.CENTER);
+			panelInHand.setAlignmentY(SwingConstants.CENTER);
+	        
 			// New label to put on new paenl.
-			JLabel labelnHand = new JLabel();
-			labelnHand.setSize(64,64);
-			labelnHand.setVisible(true);
-
+			JLabel labelInHand = new JLabel();
+			labelInHand.setSize(64,64);
+			labelInHand.setVisible(true);
+			labelInHand.setHorizontalAlignment(SwingConstants.CENTER);
+			labelInHand.setVerticalAlignment(SwingConstants.CENTER);
+	        
 			// Add the label to the panel.
-			panelInHand.add(labelnHand);
+			panelInHand.add(labelInHand);
 
 			// Make applicationWindow glass pane.
 			applicationWindow.setGlassPane(panelInHand);
@@ -160,7 +166,7 @@ public class chessboard implements Runnable {
 				// If the mouse is on a square with a piece.
 				if(Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && holdPiece == false && messWithThechessboard == true) {
 					if(Mouse.clicked == true && LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getColor() == PGN.turnOrder) {
-						labelnHand.setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
+						labelInHand.setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
 						holdPiece = true;
 						messWithThechessboard = false;
 						StringBuilder transparent = new StringBuilder(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc());
@@ -181,12 +187,16 @@ public class chessboard implements Runnable {
 					//	if(pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).getIcon() == null)
 							if (!Piece.isPiece(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD))
 								pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-									.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalmove.png"));
-								// images/legalmove.png
-							else
+//								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalmove.png"));
+								.setIcon(new ImageIcon("images/legalmove.png"));
+							else {
 							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalcapture.png"));
-
+//								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalcapture.png"));
+								.setIcon(new ImageIcon("images/ct" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
+								//System.out.println("images/ct" + Integer.toString(LAN_BOARD.get().getType()) + ".png");
+								
+							}
+							
 					
 					messWithThechessboard = false;
 				}

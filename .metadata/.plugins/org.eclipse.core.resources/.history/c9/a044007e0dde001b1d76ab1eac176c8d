@@ -1,9 +1,0 @@
-package piece;
-
-public class bishop extends main.Piece {
-
-	@Override
-	public void updateLegalMoves(int[] indexedPieceArray) {	
-		super.updateLegalMoves(indexedPieceArray);
-	}
-}
