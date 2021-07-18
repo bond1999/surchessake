@@ -15,16 +15,6 @@ public class knight extends main.Piece {
 	public void updateLegalMoves(int[] indexedPieceArray) {	
 		super.updateLegalMoves(indexedPieceArray);
 
-		// while((super.getLocation() + up * i > -1) && (super.getLocation() + up * i < 64) && // In bounds.
-		// 		(indexedPieceArray[super.getLocation() + up * i] % 2 != super.getColor() || // Opposite color to capture.
-		// 		indexedPieceArray[super.getLocation() + up * i] == -1)) { // If the space is empty.
-				
-		// 		legalMoves.add(super.getLocation() + up * i);
-		// 		if(indexedPieceArray[super.getLocation() + up * i] != -1)
-		// 			break;
-		// 		i++;
-		// }
-
 		// UP LEFT FORWARD
 		if (super.getColor() == 0) {
 			if ((super.getLocation() % 8 != 0) && (super.getLocation() / 8 != 1) && (super.getLocation() / 8 != 0) && 
@@ -46,7 +36,6 @@ public class knight extends main.Piece {
 			}
 		}
 
-		System.out.printf("%s Knight has %d as upright%n", super.getColor(super.getColor()), super.getLocation() + N_up_right);
 		// UP RIGHT FORWARD
 		if (super.getColor() == 0) {
 			if ((super.getLocation() % 8 != 7) && (super.getLocation() / 8 != 0) && (super.getLocation() / 8 != 1) && 

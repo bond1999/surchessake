@@ -52,7 +52,7 @@ public class rook extends main.Piece {
 				if((super.getColor() == 0 && super.getLocation() % 8 != 0) || // If it is a white piece
 						(super.getColor() == 1 && super.getLocation() % 8 != 7)) { // If it is white piece
 					legalMoves.add(super.getLocation() + left * i);
-					System.out.printf("%s Rook Left gives %d%n", super.getColor(super.getColor()), super.getLocation() + left * i);
+
 					if (flag == 1)
 						break;
 				}
@@ -75,7 +75,7 @@ public class rook extends main.Piece {
 				if((super.getColor() == 0 && super.getLocation() % 8 != 7) || // If it is a white piece
 						(super.getColor() == 1 && super.getLocation() % 8 != 0)) { // If it is white piece
 					legalMoves.add(super.getLocation() + right * i);
-					System.out.printf("%s Rook Right gives %d%n", super.getColor(super.getColor()), super.getLocation() + right * i);
+
 					if (flag == 1)
 						break;
 				}
