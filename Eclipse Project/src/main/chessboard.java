@@ -10,7 +10,6 @@ public class chessboard implements Runnable {
 	static JFrame applicationWindow = new JFrame("Surchessake");
 	static JPanel playArea = new JPanel();
 	static JPanel chessboard = new JPanel();
-	static JPanel stats = new JPanel();
 	
 	static Cursor currentCursorType = Cursor.getDefaultCursor();
 	static PGN pgnMoves;
@@ -32,14 +31,6 @@ public class chessboard implements Runnable {
 		
 	}
 	
-	public static void displayTimerAndMoves() {
-////		if(# of players = 2)
-////		Clockl whiteTimer = new Timer();
-////		Clock blackTimer = new TImer();	
-////		Stats
-////		else(displaySingeTimer)
-	}
-	
 	// Function to display the Java JFrame applicationWindow with the chesschessboard layers
 	public static void displayChessboard() {
 
@@ -49,20 +40,15 @@ public class chessboard implements Runnable {
 		applicationWindow.setLayout(null);
 		
 		// The JPanel playArea that sits in the JFrame applicationWindow and contains the chessboard
-		playArea.setSize(896, 640);
+		playArea.setSize(640, 640);
 		playArea.setLayout(null);
 		playArea.setBackground(Color.pink);
-		playArea.add(stats);
-	
+		
 		// The JPanel that displays the chess chessboard and sits in the playArea
 		chessboard.setSize(512, 512);
 		chessboard.setLocation(44, 44);
 		chessboard.setBackground(null);
 		chessboard.setLayout(new GridLayout(8, 8, 0, 0));
-		
-		
-		// Stats Module
-		displayTimerAndMoves();
 		
 		int squareIndex = 0;
 		int flag = 0;
@@ -196,7 +182,7 @@ public class chessboard implements Runnable {
 					panelInHand.setVisible(true);
 					
 					
-					// Legal Moves for the current piece are highlighted with a yellow/red dot on top
+					// Legal Moves for the current piece are highlighted in yellow
 					for(int i = 0; i < LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().size(); i++)
 					//	if(pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).getIcon() == null)
 							if (!Piece.isPiece(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD))
@@ -222,13 +208,7 @@ public class chessboard implements Runnable {
 					for(int i = 0; i < LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().size(); i++)
 						if(checkPiece[LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)] == -1)
 							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).setIcon(null);
-						else {
-							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-//								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalcapture.png"));
-								.setIcon(new ImageIcon("images/" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
-								//System.out.println("images/ct" + Integer.toString(LAN_BOARD.get().getType()) + ".png");
-								
-						}
+					
 					// If the square to drop on is a legal move.
 					if (LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().contains(Mouse.currentSquare)) {
 						System.out.println("That was a legal move!");
