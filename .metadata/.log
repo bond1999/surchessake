@@ -2884,3 +2884,9 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2021-07-14 20:06:07.995
 !MESSAGE Connection closed with CodeTogether backend: 
+
+!ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2021-07-18 16:38:37.966
+!MESSAGE Connection closed with CodeTogether backend: 
+
+!ENTRY org.eclipse.core.jobs 2 2 2021-07-18 16:38:38.569
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.genuitec.eclipse.codetogether.ports.AbstractProcessService$CheckOpenPortsJob
