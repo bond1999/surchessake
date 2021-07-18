@@ -2885,6 +2885,7 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 !ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2021-07-14 20:06:07.995
 !MESSAGE Connection closed with CodeTogether backend: 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 !ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2021-07-18 16:38:37.966
 !MESSAGE Connection closed with CodeTogether backend: 
@@ -2892,6 +2893,8 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 !ENTRY org.eclipse.core.jobs 2 2 2021-07-18 16:38:38.569
 !MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.genuitec.eclipse.codetogether.ports.AbstractProcessService$CheckOpenPortsJob
 =======
+=======
+>>>>>>> new-feature
 !SESSION 2021-07-15 00:58:02.278 -----------------------------------------------
 eclipse.buildId=4.20.0.I20210611-1600
 java.version=16.0.1
@@ -2962,4 +2965,7 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+<<<<<<< HEAD
+>>>>>>> new-feature
+=======
 >>>>>>> new-feature
