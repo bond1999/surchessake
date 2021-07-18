@@ -103,8 +103,8 @@ public class Piece {
 	// Methods
 	public void importValues(char n, int l) {
 
-//		String url1 = "C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/", url2 = ".png";
-		String url1 = "images/", url2 = ".png";
+		String url1 = "C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/", url2 = ".png";
+		//String url1 = "images/", url2 = ".png";
 		
 		// Convert Char n to String (ASCII flex)
 		if((n + 0) > 97 && (n + 0) < 122)
@@ -138,6 +138,42 @@ public class Piece {
 			}
 			return l;
 		}
+	}
+
+	public static boolean isInCheck(int color) { // 10 and 11
+		boolean check = false;
+		int kingIndex = -1;
+
+		if (color == 0) { // Checking if White King is in check.
+
+			for (int i = 0; i < chessboard.LAN_BOARD.size(); i++) {
+				if (chessboard.LAN_BOARD.get(i).getType() == 10)
+					kingIndex = chessboard.LAN_BOARD.get(i).getLocation();
+			}
+
+		} else if (color == 1) { // Checking if Black King is in check.
+
+			for (int i = 0; i < chessboard.LAN_BOARD.size(); i++) {
+				if (chessboard.LAN_BOARD.get(i).getType() == 11)
+					kingIndex = chessboard.LAN_BOARD.get(i).getLocation();
+			}
+
+		}
+
+		for (int i = 0; i < chessboard.LAN_BOARD.size(); i++) { // For each piece.
+			chessboard.LAN_BOARD.get(i).updateLegalMoves(chessboard.checkPiece); // Update the legal moves.
+			for (int j = 0; j < chessboard.LAN_BOARD.get(i).getLegalMoves().size(); j++) { // For each legal move.
+				if (chessboard.LAN_BOARD.get(i).getLegalMoves().get(j) == kingIndex)
+					check = true;
+			}
+		}
+
+		if (check)
+			System.out.println("The king is in check!");
+		else
+			System.out.println("The king is NOT in check!");
+			
+		return check;
 	}
 
 	public void updateLegalMoves(int[] indexedPieceArray) {}
