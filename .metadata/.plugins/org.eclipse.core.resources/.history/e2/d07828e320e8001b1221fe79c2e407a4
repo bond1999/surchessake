@@ -1,0 +1,37 @@
+package main;
+
+import java.awt.*;
+import java.text.*;
+import java.util.*;
+import javax.swing.*;
+
+public class workers {
+
+	
+
+	static class GameClock extends JPanel {
+		
+		public GameClock() {
+
+			SimpleDateFormat timeFormat;
+			JLabel timeLabel;
+			String time = "";
+
+			setTime();
+		}
+
+		public void setTime() {
+			while(true) {
+				try {
+
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	class Moves {
+		
+	}
+}

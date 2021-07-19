@@ -1,0 +1,36 @@
+package main;
+
+import java.awt.*;
+import java.text.*;
+import java.util.*;
+import javax.swing.*;
+
+public class workers {
+
+	
+
+	static class GameClock extends JPanel {
+		
+		SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss a");
+		JLabel timeLabel = new JLabel();
+		String time = timeFormat.format(Calendar.getInstance().getTime());
+
+		
+		public GameClock() {}
+
+			setTime();
+		}
+
+		public void setTime() {
+			while(true) {
+				timeLabel.setText(time);
+				chessboard.statsBoard.add(timeLabel);
+				
+			}
+		}
+	}
+	
+	class Moves {
+		
+	}
+}

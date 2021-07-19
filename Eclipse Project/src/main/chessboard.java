@@ -1,16 +1,19 @@
 package main;
 
 import java.awt.*;
+import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class chessboard implements Runnable {
 
 	static JFrame applicationWindow = new JFrame("Surchessake");
 	static JPanel playArea = new JPanel();
 	static JPanel chessboard = new JPanel();
-	
+	static JPanel statsBoard = new JPanel();
+		
 	static Cursor currentCursorType = Cursor.getDefaultCursor();
 	static PGN pgnMoves;
 	
@@ -31,24 +34,77 @@ public class chessboard implements Runnable {
 		
 	}
 	
+	public static void displayTimerAndMoves() {
+		
+		JPanel whiteClockPanel = new JPanel();
+		JPanel blackClockPanel = new JPanel();
+		JPanel movesPanel = new JPanel();
+
+		workers.GameClock whiteTimer = new workers.GameClock(whiteClockPanel);
+		workers.GameClock blackTimer = new workers.GameClock(blackClockPanel);
+
+//		workers.GameClock whiteClock = new workers.GameClock();
+//		workers.GameClock blackClock = new workers.GameClock();
+//		whiteClockPanel.add(whiteClock);
+//		blackClockPanel.add(blackClock);
+
+		//SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss a");
+		//JLabel timeLabel = new JLabel();
+		//String time = timeFormat.format(Calendar.getInstance().getTime());
+		//timeLabel.setText(time);
+		//timeLabel.setVisible(true);
+		//statsBoard.add(timeLabel);
+		
+		
+		whiteClockPanel.setPreferredSize(new Dimension(128, 64));
+		whiteClockPanel.setLocation(0, 0);
+		whiteClockPanel.setBackground(Color.red);
+		whiteClockPanel.setVisible(true);
+		
+		movesPanel.setPreferredSize(new Dimension(208, 256));
+		movesPanel.setLocation(64, 0);
+		movesPanel.setBackground(Color.green);
+		movesPanel.setVisible(true);
+		
+		blackClockPanel.setPreferredSize(new Dimension(128, 64));
+		blackClockPanel.setLocation(320, 0);
+		blackClockPanel.setBackground(Color.blue);
+		blackClockPanel.setVisible(true);
+		
+		statsBoard.setSize(208, 384);
+		statsBoard.setLocation(600, 108);
+		statsBoard.setBackground(Color.white);
+		statsBoard.setVisible(true);
+		statsBoard.setLayout(new BorderLayout());
+		
+		statsBoard.add(whiteClockPanel, BorderLayout.PAGE_START);
+		statsBoard.add(movesPanel, BorderLayout.CENTER);
+		statsBoard.add(blackClockPanel, BorderLayout.PAGE_END);
+	}
+	
 	// Function to display the Java JFrame applicationWindow with the chesschessboard layers
 	public static void displayChessboard() {
 
 		// The JFrame applicationWindow to display the game
 		applicationWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		applicationWindow.setSize(720, 640);
+		applicationWindow.setSize(868, 635);
 		applicationWindow.setLayout(null);
 		
 		// The JPanel playArea that sits in the JFrame applicationWindow and contains the chessboard
-		playArea.setSize(640, 640);
+		playArea.setSize(856, 600);
 		playArea.setLayout(null);
 		playArea.setBackground(Color.pink);
+		playArea.add(statsBoard);
 		
 		// The JPanel that displays the chess chessboard and sits in the playArea
 		chessboard.setSize(512, 512);
 		chessboard.setLocation(44, 44);
 		chessboard.setBackground(null);
 		chessboard.setLayout(new GridLayout(8, 8, 0, 0));
+		
+		// Timer and Move Module
+		displayTimerAndMoves();
+		
 		
 		int squareIndex = 0;
 		int flag = 0;
@@ -113,6 +169,8 @@ public class chessboard implements Runnable {
 				flag = 0;
 				
 		} // For each row of the chessboard.	
+
+
 
 		// Set visibility.
 		chessboard.setVisible(true);
@@ -182,17 +240,17 @@ public class chessboard implements Runnable {
 					panelInHand.setVisible(true);
 					
 					
-					// Legal Moves for the current piece are highlighted in yellow
+					// Legal Moves for the current piece are displayed with a yellow/red dot on top
 					for(int i = 0; i < LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().size(); i++)
 					//	if(pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).getIcon() == null)
 							if (!Piece.isPiece(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD))
 								pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalmove.png"));
-								//.setIcon(new ImageIcon("images/legalmove.png"));
+//								.setIcon(new ImageIcon("C:/Users/surya/OneDrive/Desktop/Projects/Surchessake/Eclipse Project/images/legalmove.png"));
+								.setIcon(new ImageIcon("images/legalmove.png"));
 							else {
 							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
 //								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalcapture.png"));
-								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/ct" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
+								.setIcon(new ImageIcon("images/ct" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
 								//System.out.println("images/ct" + Integer.toString(LAN_BOARD.get().getType()) + ".png");
 								
 							}
@@ -208,7 +266,12 @@ public class chessboard implements Runnable {
 					for(int i = 0; i < LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().size(); i++)
 						if(checkPiece[LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)] == -1)
 							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).setIcon(null);
-					
+						else {
+							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
+//								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
+								.setIcon(new ImageIcon("images/" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
+								
+							}
 					// If the square to drop on is a legal move.
 					if (LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().contains(Mouse.currentSquare)) {
 						System.out.println("That was a legal move!");

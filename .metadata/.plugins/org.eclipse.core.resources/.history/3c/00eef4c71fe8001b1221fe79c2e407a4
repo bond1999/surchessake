@@ -1,0 +1,33 @@
+package main;
+
+import java.awt.*;
+import java.text.*;
+import java.util.*;
+import javax.swing.*;
+
+public class workers {
+
+	
+
+	static class GameClock extends JPanel {
+		
+
+		
+		public GameClock() {}
+
+			setTime();
+		}
+
+		public void setTime() {
+			while(true) {
+				timeLabel.setText(time);
+				chessboard.statsBoard.add(timeLabel);
+
+			}
+		}
+	}
+	
+	class Moves {
+		
+	}
+}

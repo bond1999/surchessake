@@ -1,0 +1,44 @@
+package main;
+
+import java.awt.*;
+import java.text.*;
+import java.util.*;
+import javax.swing.*;
+
+public class workers {
+
+	
+
+	static class GameClock extends JPanel {
+		
+		SimpleDateFormat timeFormat;
+		JLabel timeLabel;
+		String time;
+
+		public GameClock() {
+
+			
+			timeFormat = new SimpleDateFormat("HH:mm:ss a");
+			timeLabel = new JLabel();
+			time = timeFormat.format(Calendar.getInstance().getTime());
+
+			setTime();
+		}
+
+		public void setTime() {
+			while(true) {
+				
+				time = timeFormat.format(Calendar.getInstance().getTime());
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	class Moves {
+		
+	}
+}
