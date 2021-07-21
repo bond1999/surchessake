@@ -48,7 +48,7 @@ public class Mouse implements MouseListener {
 		
 		// Sets the current cursor to a hand cursor.
 		chessboard.currentCursorType = Cursor.getPredefinedCursor(12);
-		chessboard.chessboard.setCursor(chessboard.currentCursorType);
+		workers.chessboard.setCursor(chessboard.currentCursorType);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class Mouse implements MouseListener {
 		
 		// Sets the current cursor back to the default cursor.
 		chessboard.currentCursorType = Cursor.getDefaultCursor();
-		chessboard.chessboard.setCursor(chessboard.currentCursorType);
+		workers.chessboard.setCursor(chessboard.currentCursorType);
 	}
 
 	@Override

@@ -1,0 +1,46 @@
+package main;
+
+import java.awt.*;
+import java.text.*;
+import java.util.*;
+import java.util.Timer;
+
+import javax.swing.*;
+
+public class workers {
+
+	
+
+	static class GameClock extends JPanel {
+		
+		SimpleDateFormat timeFormat;
+		JLabel timeLabel = new JLabel();
+		String time;
+		
+		int seconds = 300;
+
+		public GameClock(JPanel panel) {
+
+			timeFormat = new SimpleDateFormat("mm:ss a");
+			time = timeFormat.format(seconds);
+			timeLabel.setVisible(true);
+
+			Timer timer = new Timer();
+			TimerTask task = new TimerTask() {
+				@Override
+				public void run() {
+					time = timeFormat.format(seconds);
+					timeLabel.setText(time);
+					panel.add(timeLabel);
+					
+				}
+			};
+			timer.scheduleAtFixedRate(task, 0, 1000);
+			
+		}
+	}
+	
+	class Moves {
+		
+	}
+}

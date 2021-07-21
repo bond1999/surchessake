@@ -1,0 +1,217 @@
+package main;
+
+import java.awt.*;
+import java.text.*;
+import java.util.*;
+import java.util.Timer;
+
+import javax.swing.*;
+
+public class workers {
+
+	
+
+	static class GameClock extends JPanel {
+		
+		SimpleDateFormat timeFormat;
+		JLabel timeLabel = new JLabel();
+		String time;
+		
+		int milliseconds = 300000;
+
+		public GameClock(JPanel panel, int color) {
+
+			timeLabel.setFont(new Font("Serif", Font.PLAIN, 50));
+
+			timeFormat = new SimpleDateFormat("mm:ss");
+			time = timeFormat.format(milliseconds);
+			timeLabel.setVisible(true);
+			// center it here
+			timeLabel.setBounds(0, 0, 128, 64);
+			timeLabel.setAlignmentY(BOTTOM_ALIGNMENT);
+			
+			Timer timer = new Timer();
+			TimerTask task = new TimerTask() {
+				@Override
+				public void run() {
+					if ((color == 0 && PGN.turnOrder == 0) || color == 1 && PGN.turnOrder == 1)
+						milliseconds -= 1;
+					time = timeFormat.format(milliseconds);
+					timeLabel.setText(time);
+					panel.add(timeLabel);
+					
+					
+				}
+			};
+			timer.scheduleAtFixedRate(task, 0, 1);
+			
+		}
+	}
+
+	static JFrame applicationWindow = new JFrame("Surchessake");
+	static JPanel playArea = new JPanel();
+	static JPanel chessboard = new JPanel();
+	static JPanel statsBoard = new JPanel();
+	static Button newGame = new Button("New Game");
+	
+public static void displayTimerAndMoves() {
+		
+		JPanel whiteClockPanel = new JPanel();
+		JPanel blackClockPanel = new JPanel();
+		JPanel movesPanel = new JPanel();
+
+		workers.GameClock whiteTimer = new workers.GameClock(whiteClockPanel, 0);
+		workers.GameClock blackTimer = new workers.GameClock(blackClockPanel, 1);
+
+//		workers.GameClock whiteClock = new workers.GameClock();
+//		workers.GameClock blackClock = new workers.GameClock();
+//		whiteClockPanel.add(whiteClock);
+//		blackClockPanel.add(blackClock);
+
+		//SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss a");
+		//JLabel timeLabel = new JLabel();
+		//String time = timeFormat.format(Calendar.getInstance().getTime());
+		//timeLabel.setText(time);
+		//timeLabel.setVisible(true);
+		//statsBoard.add(timeLabel);
+		
+		
+		whiteClockPanel.setPreferredSize(new Dimension(128, 64));
+		whiteClockPanel.setLocation(0, 0);
+//		whiteClockPanel.setBackground(Color.red);
+		whiteClockPanel.setVisible(true);
+		whiteClockPanel.setLayout(null);
+		
+		movesPanel.setPreferredSize(new Dimension(208, 256));
+		movesPanel.setLocation(64, 0);
+		movesPanel.setBackground(Color.green);
+		movesPanel.setVisible(true);
+		
+		blackClockPanel.setPreferredSize(new Dimension(128, 64));
+		blackClockPanel.setLocation(320, 0);
+//		blackClockPanel.setBackground(Color.blue);
+		blackClockPanel.setVisible(true);
+		blackClockPanel.setLayout(null);
+		
+		statsBoard.setSize(208, 384);
+		statsBoard.setLocation(600, 108);
+		statsBoard.setBackground(Color.white);
+		statsBoard.setVisible(true);
+		statsBoard.setLayout(new BorderLayout());
+		
+		statsBoard.add(whiteClockPanel, BorderLayout.PAGE_START);
+		statsBoard.add(movesPanel, BorderLayout.CENTER);
+		statsBoard.add(blackClockPanel, BorderLayout.PAGE_END);
+	}
+
+
+	public static void displayChessboard() {
+
+		// The JFrame applicationWindow to display the game
+		applicationWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		applicationWindow.setSize(868, 635);
+		applicationWindow.setLayout(null);
+		
+		// The JPanel playArea that sits in the JFrame applicationWindow and contains the chessboard
+		playArea.setSize(856, 600);
+		playArea.setLayout(null);
+		playArea.setBackground(Color.pink);
+		playArea.add(statsBoard);
+		
+		// The JPanel that displays the chess chessboard and sits in the playArea
+		chessboard.setSize(512, 512);
+		chessboard.setLocation(44, 44);
+		chessboard.setBackground(null);
+		chessboard.setLayout(new GridLayout(8, 8, 0, 0));
+		
+		// Timer and Move Module
+		displayTimerAndMoves();
+		
+		// New Game Button
+		newGame.setLocation(600, 44);
+		newGame.setSize(128,64);
+		newGame.setVisible(true);
+		
+		playArea.add(newGame);
+		
+		
+		
+		int squareIndex = 0;
+		int flag = 0;
+
+		// For loop to add Mouse Listeners to each Square, 64 of which are added to the Chesschessboard
+		for(int i = 0; i < 8; i++) { 
+			for(int j = 0; j < 8; j++) {
+				
+				JPanel square = new JPanel();
+
+				// Beautiful ASCII fleing.
+				char letter = (char) (j + 97);
+				char number = (char) (8 - i + 48);
+
+				square.setSize(64,64);
+				
+				// Initializing MouseListeners for each square.
+				Mouse mouseListener = new Mouse();
+				mouseListener.setName(Character.toString(letter) + Character.toString(number));
+				mouseListener.setLocation(squareIndex);
+				square.addMouseListener(mouseListener);
+
+				if (flag == 0){
+					square.setBackground(Color.WHITE);
+					 flag = 1;
+				}else {
+					square.setBackground(Color.DARK_GRAY);
+					 flag = 0;
+				}
+				
+				JLabel piece = new JLabel();
+				
+				// If the square is the location of a piece, get correct icon.
+				for(int k=0; k<main.chessboard.LAN_BOARD.size(); k++) {
+					if(squareIndex == main.chessboard.LAN_BOARD.get(k).getLocation())
+						piece.setIcon(new ImageIcon(main.chessboard.LAN_BOARD.get(Piece.getPieceIndex(squareIndex, main.chessboard.LAN_BOARD)).getImgsrc()));
+				}
+
+				// Add the piece to the array and square.
+				piece.setHorizontalAlignment(SwingConstants.CENTER);
+		        piece.setVerticalAlignment(SwingConstants.CENTER);
+		        main.chessboard.pieceIconArray.add(piece);
+				piece.setVisible(true);
+				piece.setSize(64,64);
+				square.add(piece);
+
+				// add square to the arraylist
+				main.chessboard.squareArray.add(square);
+
+				square.setVisible(true);
+				square.setLayout(null);
+				chessboard.add(square);
+
+				squareIndex++;
+
+			} // For each column of the chessboard.
+		
+			// Flags for alternating square color.
+			if (flag == 0)
+				flag = 1;
+			else 
+				flag = 0;
+				
+		} // For each row of the chessboard.	
+
+
+
+		// Set visibility.
+		chessboard.setVisible(true);
+		playArea.setVisible(true);
+		applicationWindow.setVisible(true);
+		
+		// Add chessboard to playArea, and playArea to applicationWindow.
+		playArea.add(chessboard);
+		applicationWindow.add(playArea);
+		
+	} // displaychessboard()
+	
+
+}
