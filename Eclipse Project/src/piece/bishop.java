@@ -23,7 +23,7 @@ public class bishop extends main.Piece {
 		while((super.getLocation() + up_left * i > -1) && (super.getLocation() + up_left * i < 64) && // In bounds.
 				(indexedPieceArray[super.getLocation() + up_left * i] % 2 != super.getColor() || // Opposite color to capture.
 				indexedPieceArray[super.getLocation() + up_left * i] == -1)) { // If the space is empty.
-//				System.out.printf("%s bishop Up left gives %d%n", super.getColor(super.getColor()), super.getLocation() + up_left * i);
+			
 				if((super.getColor() == 0 && (super.getLocation() + up_left * i) % 8 == 0) || // If it is a white piece
 						(super.getColor() == 1 && (super.getLocation() + up_left * i) % 8 == 7)) // If it is a black piece
 					flag = 1;
