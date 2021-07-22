@@ -8,6 +8,7 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="has"/>
 			<item value="labelnHand"/>
 			<item value="location"/>
 			<item value="LAN_chessboard"/>
@@ -22,7 +23,6 @@
 			<item value="getType"/>
 			<item value="getColor"/>
 			<item value="space"/>
-			<item value="BSN"/>
 		</list>
 		<list key="replacehistory">
 			<item value="labelInHand"/>

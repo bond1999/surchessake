@@ -12,9 +12,10 @@ public class rook extends main.Piece {
 	}
 	
 	@Override
-	public void updateLegalMoves(int[] indexedPieceArray) {	
+	public ArrayList<Integer> updateLegalMoves(int[] indexedPieceArray) {	
 		super.updateLegalMoves(indexedPieceArray);
 
+		ArrayList<Integer> legalMoves = new ArrayList<Integer>();
 		// UP
 		int i = 1;
 		while((super.getLocation() + up * i > -1) && (super.getLocation() + up * i < 64) && // In bounds.
@@ -89,6 +90,6 @@ public class rook extends main.Piece {
 		// KING IN CHECK
 		// if kingIsInCheck
 			// delete legal moves
-
+		return legalMoves;
 	}
 }

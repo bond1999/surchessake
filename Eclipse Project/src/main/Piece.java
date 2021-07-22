@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Piece {
 	
 	public ArrayList<Integer> legalMoves = new ArrayList<Integer>();
+	public ArrayList<Integer> nextlegalMoves = new ArrayList<Integer>();
 
 	public int up = -8;
 	public int down = 8;
@@ -26,9 +27,10 @@ public class Piece {
 	public int N_back_right = 17;
 	
 	public boolean hasMoved = false;
+	public boolean pieceHasMovedToCheckSelfKing = false;
 	public int originalLocation;
 	
-	private int location;
+	protected int location;
 	private int color = 0; // 0 = White, 1 = Black
 	private int type;
 	private String imgsrc;
@@ -140,44 +142,45 @@ public class Piece {
 		}
 	}
 
-	public static boolean isInCheck(int color) { // 10 and 11
-		boolean check = false;
-		int kingIndex = -1;
-
-		if (color == 0) { // Checking if White King is in check.
-
+	public static boolean isInCheck(int[] indexedPieceArray, int color) { // 10
+		int kingLocation = -1; 
+		
+		if (color == 0) {
 			for (int i = 0; i < chessboard.LAN_BOARD.size(); i++) {
-				if (chessboard.LAN_BOARD.get(i).getType() == 10)
-					kingIndex = chessboard.LAN_BOARD.get(i).getLocation();
+				if (chessboard.LAN_BOARD.get(i).getType() == 11) {
+					kingLocation = chessboard.LAN_BOARD.get(i).getLocation();
+					break;
+				}
 			}
-
-		} else if (color == 1) { // Checking if Black King is in check.
-
-			for (int i = 0; i < chessboard.LAN_BOARD.size(); i++) {
-				if (chessboard.LAN_BOARD.get(i).getType() == 11)
-					kingIndex = chessboard.LAN_BOARD.get(i).getLocation();
-			}
-
-		}
-
-		for (int i = 0; i < chessboard.LAN_BOARD.size(); i++) { // For each piece.
-			chessboard.LAN_BOARD.get(i).updateLegalMoves(chessboard.checkPiece); // Update the legal moves.
-			for (int j = 0; j < chessboard.LAN_BOARD.get(i).getLegalMoves().size(); j++) { // For each legal move.
-				if (chessboard.LAN_BOARD.get(i).getLegalMoves().get(j) == kingIndex)
-					check = true;
-			}
-		}
-
-		if (check)
-			System.out.println("The king is in check!");
-		else
-			System.out.println("The king is NOT in check!");
 			
-		return check;
+		} else if (color == 1) {
+			for (int i = 0; i < chessboard.LAN_BOARD.size(); i++) {
+				if (chessboard.LAN_BOARD.get(i).getType() == 10) {
+					kingLocation = chessboard.LAN_BOARD.get(i).getLocation();
+					break;	
+				}
+			}	
+		}
+
+		for (int j = 0; j < chessboard.LAN_BOARD.size(); j++)
+		{
+			chessboard.LAN_BOARD.get(j).updateLegalMoves(indexedPieceArray);
+			for (int k = 0; k < chessboard.LAN_BOARD.get(j).getLegalMoves().size(); k++) {
+				if (chessboard.LAN_BOARD.get(j).getLegalMoves().get(k) == kingLocation)
+					return true;
+			}
+		}
+
+		return false;
 	}
 
-	public void updateLegalMoves(int[] indexedPieceArray) {}
+	public ArrayList<Integer> updateLegalMoves(int[] indexedPieceArray) {
+		return new ArrayList<Integer>();
+	}
 	
+//	public ArrayList<Integer> updateLegalMoves(String move) {
+//		return legalMoves;}
+
 	public ArrayList<Integer> getLegalMoves() { return new ArrayList<Integer>(); }
 	public void resetLegalMoves() {
 		legalMoves.clear();

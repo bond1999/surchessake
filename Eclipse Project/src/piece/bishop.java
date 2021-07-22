@@ -13,11 +13,11 @@ public class bishop extends main.Piece {
 	}
 	
 	@Override
-	public void updateLegalMoves(int[] indexedPieceArray) {	
+	public ArrayList<Integer> updateLegalMoves(int[] indexedPieceArray) {	
 		super.updateLegalMoves(indexedPieceArray);
 
 		int flag = 0;
-
+		ArrayList<Integer> legalMoves = new ArrayList<Integer>();
 		// UP LEFT DIAGONAL
 		int i = 1;
 		while((super.getLocation() + up_left * i > -1) && (super.getLocation() + up_left * i < 64) && // In bounds.
@@ -107,6 +107,6 @@ public class bishop extends main.Piece {
 		// KING IN CHECK
 		// if kingIsInCheck
 			// delete legal moves
-
+		return legalMoves;
 	}
 }

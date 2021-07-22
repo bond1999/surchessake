@@ -6,7 +6,7 @@ public class PGN {
 	
 	static ArrayList<Tag> Tags = new ArrayList<Tag>();
 	static ArrayList<Move> Moves = new ArrayList<Move>();
-	static int turnOrder = 0; // 0 is White, 1 is Black 
+	static int turnOrder = 0; // 0 is White, 1 is Black to move
 	static int moveNumber = 1;
 	static boolean capture = false;
 	

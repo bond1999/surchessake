@@ -12,9 +12,10 @@ public class knight extends main.Piece {
 	}
 	
 	@Override
-	public void updateLegalMoves(int[] indexedPieceArray) {	
+	public ArrayList<Integer> updateLegalMoves(int[] indexedPieceArray) {	
 		super.updateLegalMoves(indexedPieceArray);
 
+		ArrayList<Integer> legalMoves = new ArrayList<Integer>();
 		// UP LEFT FORWARD
 		if (super.getColor() == 0) {
 			if ((super.getLocation() % 8 != 0) && (super.getLocation() / 8 != 1) && (super.getLocation() / 8 != 0) && 
@@ -188,6 +189,6 @@ public class knight extends main.Piece {
 		// KING IN CHECK
 		// if kingIsInCheck
 			// delete legal moves
-
+		return legalMoves;
 	}
 }

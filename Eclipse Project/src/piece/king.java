@@ -1,11 +1,15 @@
 package piece;
 import java.util.ArrayList;
 
+import main.Piece;
+import main.chessboard;
+
 public class king extends main.Piece {
 	
 	public static int points = 1;
 	public boolean isInCheck = false;
-	
+	public static boolean putsKingInCheck = false;
+
 	@Override
 	public ArrayList<Integer> getLegalMoves() {
 		super.getLegalMoves();
@@ -13,9 +17,10 @@ public class king extends main.Piece {
 	}
 	
 	@Override
-	public void updateLegalMoves(int[] indexedPieceArray) {	
+	public ArrayList<Integer> updateLegalMoves(int[] indexedPieceArray) {	
 		super.updateLegalMoves(indexedPieceArray);
 	
+		ArrayList<Integer> legalMoves = new ArrayList<Integer>();
 		// MOVES FOR KING
 		
 		// UP LEFT
@@ -81,6 +86,6 @@ public class king extends main.Piece {
 		// MOVES AVAILABLE GIVEN KING IS IN CHECK
 
 
-
+		return legalMoves;
 	}
 }

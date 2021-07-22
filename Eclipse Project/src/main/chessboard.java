@@ -13,7 +13,7 @@ public class chessboard implements Runnable {
 	static Cursor currentCursorType = Cursor.getDefaultCursor();
 	static PGN pgnMoves;
 	
-	static ArrayList<Piece> LAN_BOARD = new ArrayList<Piece>();
+	public static ArrayList<Piece> LAN_BOARD = new ArrayList<Piece>();
 	static ArrayList<JPanel> squareArray = new ArrayList<JPanel>();
 	static ArrayList<JLabel> pieceIconArray = new ArrayList<JLabel>();
 	static int checkPiece[] = new int[64];
@@ -42,7 +42,7 @@ public class chessboard implements Runnable {
 			workers.displayChessboard();
 			// Update check piece array and all piece legal moves.
 			updateCheckPiece(LAN_BOARD);
-			algorithm.updateAllPieces();
+			algorithm.updateAllPossibleLegalMoves();
 
 			// New panel for picking up a piece.
 			JPanel panelInHand = new JPanel();
@@ -75,7 +75,8 @@ public class chessboard implements Runnable {
 				
 				// If the mouse is on a square with a piece.
 				if(Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && holdPiece == false && messWithThechessboard == true) {
-					if(Mouse.clicked == true && LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getColor() == PGN.turnOrder) {
+					if(Mouse.clicked == true && LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getColor() == PGN.turnOrder ) {
+//							LAN_BOARD.get(Piece.getPieceIndex(Mouse.currentSquare, LAN_BOARD)).getLegalMoves().size() == 0) {
 						labelInHand.setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
 						holdPiece = true;
 						messWithThechessboard = false;
@@ -148,8 +149,7 @@ public class chessboard implements Runnable {
 						
 						// Display update chessboard with current pieces
 						updateCheckPiece(LAN_BOARD);
-						algorithm.updateAllPieces();
-						Piece.isInCheck(1);
+						algorithm.updateAllPossibleLegalMoves();
 						
 						// Not yet implemented, but last move played displayer -
 //						squareArray.get(Mouse.originalSquare).setBackground(new Color(102, 102, 255));
