@@ -26,7 +26,7 @@ public class reader {
 	        return fileContents;
 		}
 	
-	        public static String SETUP_BOARD = "rnbqk1nr/pppp1ppp/8/b7/8/4P3/PPPP1PPP/RNBQKBNR w KQkq - 0 1";
+	        public static String SETUP_BOARD = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 	
 	// Function to read a FEN String and create Pieces in the back-end
 	public static void readLAN(String LAN) {

@@ -26,26 +26,25 @@ public class workers {
 			timeFormat = new SimpleDateFormat("mm:ss");
 			time = timeFormat.format(milliseconds);
 			timeLabel.setVisible(true);
-			// center it here
 			timeLabel.setBounds(0, 0, 128, 64);
 			timeLabel.setAlignmentY(BOTTOM_ALIGNMENT);
+			timeLabel.setText(time);
+			panel.add(timeLabel);
+			
 			
 			Timer timer = new Timer();
 			TimerTask task = new TimerTask() {
 				
 				@Override
 				public void run() {
-					if (color == PGN.turnOrder) {
-						milliseconds -= 1000;
-						time = timeFormat.format(milliseconds);
-						timeLabel.setText(time);
-						panel.add(timeLabel);
-					}
-					
-					
+					if (color == 1 || PGN.moveNumber > 1)
+						if (color == PGN.turnOrder) {
+							milliseconds -= 1000;
+							time = timeFormat.format(milliseconds);
+							timeLabel.setText(time);
+						}
 				}
 			};				
-//			timer.setCoalesce(false);
 			timer.scheduleAtFixedRate(task, 0, 1000);
 			
 		}
