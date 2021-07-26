@@ -49,8 +49,9 @@
 		<item key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION" value="C:\Users\surya\OneDrive\Desktop\Projects\Surchessake"/>
 		<item key="FatJarPackageWizardPage.LIBRARY_HANDLING" value="2"/>
 		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="surchessake - Eclipse Project"/>
-		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="Eclipse Project\beta-test-03.jar"/>
+		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="Eclipse Project\beta-test-04.jar"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="Eclipse Project\beta-test-04.jar"/>
 			<item value="Eclipse Project\beta-test-03.jar"/>
 			<item value="Eclipse Project\beta-test-02.jar"/>
 			<item value="Eclipse Project\beta-test-01.jar"/>

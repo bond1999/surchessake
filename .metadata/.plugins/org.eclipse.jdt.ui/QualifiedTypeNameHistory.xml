@@ -32,4 +32,8 @@
     <fullyQualifiedTypeName name="main.chessboard"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+    <fullyQualifiedTypeName name="java.awt.GridBagConstraints"/>
+    <fullyQualifiedTypeName name="java.awt.GridBagLayout"/>
+    <fullyQualifiedTypeName name="main.surchessake"/>
+    <fullyQualifiedTypeName name="java.awt.Insets"/>
 </qualifiedTypeNameHistroy>

@@ -46,15 +46,11 @@ public class chessboard implements Runnable {
 			panelInHand.setOpaque(false);
 			panelInHand.setSize(64,64);
 			panelInHand.setLayout(null);
-			panelInHand.setAlignmentX(SwingConstants.CENTER);
-			panelInHand.setAlignmentY(SwingConstants.CENTER);
 	        
 			// New label to put on new paenl.
 			JLabel labelInHand = new JLabel();
 			labelInHand.setSize(64,64);
 			labelInHand.setVisible(true);
-			labelInHand.setHorizontalAlignment(SwingConstants.CENTER);
-			labelInHand.setVerticalAlignment(SwingConstants.CENTER);
 	        
 			// Add the label to the panel.
 			panelInHand.add(labelInHand);
@@ -75,6 +71,7 @@ public class chessboard implements Runnable {
 					if(Mouse.clicked == true && LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getColor() == PGN.turnOrder ) {
 //							LAN_BOARD.get(Piece.getPieceIndex(Mouse.currentSquare, LAN_BOARD)).getLegalMoves().size() == 0) {
 						labelInHand.setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
+						System.out.printf("Label is at %d, %d \n",labelInHand.getX(), labelInHand.getX());
 						holdPiece = true;
 						messWithThechessboard = false;
 						StringBuilder transparent = new StringBuilder(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc());
@@ -92,7 +89,6 @@ public class chessboard implements Runnable {
 					
 					// Legal Moves for the current piece are displayed with a yellow/red dot on top
 					for(int i = 0; i < LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().size(); i++)
-					//	if(pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).getIcon() == null)
 							if (!Piece.isPiece(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD))
 								pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
 //								.setIcon(new ImageIcon("C:/Users/AMD/Desktop//Surchessake/surchessake/Eclipse Project/images/legalmove.png"));
@@ -145,12 +141,6 @@ public class chessboard implements Runnable {
 						// Display update chessboard with current pieces
 						updateCheckPiece(LAN_BOARD);
 						algorithm.updateAllPossibleLegalMoves();
-						
-						// Not yet implemented, but last move played displayer -
-//						squareArray.get(Mouse.originalSquare).setBackground(new Color(102, 102, 255));
-//						squareArray.get(Mouse.newSquare).setBackground(new Color(153, 153, 255));
-						
-						
 
 					} else { // If the square to drop on is NOT a legal move
 						System.out.println("That was an illegal move!");
@@ -163,7 +153,7 @@ public class chessboard implements Runnable {
 					messWithThechessboard = true;
 
 				}
-				surchessake.playArea.revalidate();
+				//surchessake.playArea.revalidate();
 				surchessake.applicationWindow.revalidate();
 			}
 		} catch (Exception e) {

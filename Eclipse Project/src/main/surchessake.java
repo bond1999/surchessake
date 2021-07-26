@@ -3,6 +3,12 @@ package main;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,31 +17,24 @@ import javax.swing.JPanel;
 public class surchessake {
 	
 	static JFrame applicationWindow = new JFrame("Surchessake");
-	static JPanel playArea = new JPanel();
 	static JButton newGame = new JButton("New Game");
 	
 	static Thread chessboardThread = new Thread(new chessboard());
 	
 	public static void main(String[] args) {
-
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		
 		// The JFrame applicationWindow to display the game
 		applicationWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		applicationWindow.setSize(868, 635);
-		applicationWindow.setLayout(null);
-		applicationWindow.add(playArea);
+		applicationWindow.setPreferredSize(new Dimension(896, 640));
+		applicationWindow.setLayout(new GridBagLayout());
+		applicationWindow.setResizable(false);
+		
 		applicationWindow.setVisible(true);
 		
-		// The JPanel playArea that sits in the JFrame applicationWindow and contains the chessboard
-		playArea.setSize(856, 600);
-		playArea.setLayout(null);
-		playArea.setBackground(Color.pink);
-		playArea.add(workers.displayStatsBoard()); // Displays Stats Board on the play area
-		playArea.add(newGame);		
-		playArea.setVisible(true);
 		
-		// New Game Button
-		newGame.setLocation(600, 44);
-		newGame.setSize(128,64);
+		newGame.setPreferredSize(new Dimension(64, 64));
 		newGame.setVisible(true);
 		newGame.addActionListener(new ActionListener() {
 			@Override
@@ -53,17 +52,30 @@ public class surchessake {
 				main.chessboard.pieceIconArray.clear();
 				reader.readLAN(reader.SETUP_BOARD);
 
-				playArea.removeAll();
-				playArea.repaint();
-				playArea.add(workers.displayChessboard());
+				applicationWindow.repaint();
+
+				gbc.gridx = 0;
+				gbc.gridy = 0;
+				gbc.gridheight = 8;
+				gbc.gridwidth = 8;
+
+				gbc.insets = new Insets(0, 0, 0, 64);
+
+				applicationWindow.add(workers.displayChessboard(), gbc);
+				
 				
 				surchessake.chessboardThread.start();
-				playArea.revalidate();
-				applicationWindow.revalidate();
 			}
 		});
-		surchessake.playArea.revalidate();
+		
+		gbc.gridx = 10;
+		gbc.gridy = 1;
+		gbc.gridheight = 1;
+		gbc.gridwidth = 1;
+		
+		applicationWindow.add(newGame, gbc);
 		surchessake.applicationWindow.revalidate();
+		applicationWindow.pack();
 	}
 	
 }
