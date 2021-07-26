@@ -14144,3 +14144,268 @@ Binding(CTRL+SHIFT+T,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2021-07-23 16:41:02.239 -----------------------------------------------
+eclipse.buildId=4.20.0.I20210611-1600
+java.version=16.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-07-23 16:41:08.743
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jface 2 0 2021-07-23 16:41:22.813
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-07-23 16:41:22.813
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2e013ba1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2d8c729f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2021-07-23 17:11:48.567 -----------------------------------------------
+eclipse.buildId=4.20.0.I20210611-1600
+java.version=16.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-07-23 17:11:51.013
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jface 2 0 2021-07-23 17:11:53.924
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-07-23 17:11:53.924
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@61d7bb61,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@33f81280,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2021-07-23 17:48:41.771
+!MESSAGE Error computing hover
+!STACK 0
+org.eclipse.jdt.internal.core.search.matching.MatchLocator$WrappedCoreException
+	at org.eclipse.jdt.internal.core.search.matching.MemberDeclarationVisitor.visit(MemberDeclarationVisitor.java:338)
+	at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.traverse(TypeDeclaration.java:1723)
+	at org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.traverse(QualifiedAllocationExpression.java:693)
+	at org.eclipse.jdt.internal.compiler.ast.MessageSend.traverse(MessageSend.java:1171)
+	at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.traverse(MethodDeclaration.java:411)
+	at org.eclipse.jdt.internal.core.search.matching.MatchLocator.reportMatching(MatchLocator.java:2619)
+	at org.eclipse.jdt.internal.core.search.matching.MatchLocator.reportMatching(MatchLocator.java:3281)
+	at org.eclipse.jdt.internal.core.search.matching.MatchLocator.reportMatching(MatchLocator.java:2845)
+	at org.eclipse.jdt.internal.core.search.matching.MatchLocator.process(MatchLocator.java:2020)
+	at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1336)
+	at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1373)
+	at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1515)
+	at org.eclipse.jdt.internal.core.search.JavaSearchParticipant.locateMatches(JavaSearchParticipant.java:135)
+	at org.eclipse.jdt.internal.core.search.BasicSearchEngine.findMatches(BasicSearchEngine.java:250)
+	at org.eclipse.jdt.internal.core.search.BasicSearchEngine.search(BasicSearchEngine.java:601)
+	at org.eclipse.jdt.core.search.SearchEngine.search(SearchEngine.java:670)
+	at com.genuitec.eclipse.codetogether.binding.jdt.util.HoverInfoProvider.isResolved(HoverInfoProvider.java:133)
+	at com.genuitec.eclipse.codetogether.binding.jdt.util.HoverInfoProvider.computeHover(HoverInfoProvider.java:100)
+	at com.genuitec.eclipse.codetogether.binding.jdt.JDTHoverHandler.computeHover(JDTHoverHandler.java:39)
+	at com.genuitec.eclipse.codetogether.binding.jdt.JDTHoverHandler.hover(JDTHoverHandler.java:28)
+	at com.genuitec.eclipse.codetogether.binding.jdt.JDTLanguageServer.lambda$4(JDTLanguageServer.java:154)
+	at com.genuitec.eclipse.codetogether.binding.AbstractDelegateLanguageHandler.lambda$0(AbstractDelegateLanguageHandler.java:63)
+	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:642)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:479)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:295)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1016)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1665)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1598)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+
+!ENTRY org.eclipse.update.configurator 4 0 2021-07-23 17:52:27.171
+!MESSAGE ConfigurationParser.parse() error:
+!STACK 0
+org.xml.sax.SAXException: NLS missing message: InstalledSiteParser_UnableToCreateURL in: org.eclipse.update.internal.configurator.messages
+java.net.MalformedURLException: no protocol: ../../../.p2/pool/
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.startElement(ConfigurationParser.java:133)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:518)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:374)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2725)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:541)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:888)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:824)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1224)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:635)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl.parse(SAXParserImpl.java:324)
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.parse(ConfigurationParser.java:88)
+	at org.eclipse.pde.internal.core.update.configurator.PlatformConfiguration.loadConfig(PlatformConfiguration.java:110)
+	at org.eclipse.pde.internal.core.update.configurator.PlatformConfiguration.initialize(PlatformConfiguration.java:85)
+	at org.eclipse.pde.internal.core.update.configurator.PlatformConfiguration.<init>(PlatformConfiguration.java:61)
+	at org.eclipse.pde.internal.core.PluginPathFinder.getFeaturePaths(PluginPathFinder.java:115)
+	at org.eclipse.pde.internal.core.ExternalFeatureModelManager.createFeatures(ExternalFeatureModelManager.java:174)
+	at org.eclipse.pde.internal.core.target.TargetDefinition.resolveFeatures(TargetDefinition.java:1059)
+	at org.eclipse.pde.internal.core.target.ProfileBundleContainer.resolveFeatures(ProfileBundleContainer.java:250)
+	at org.eclipse.pde.internal.core.target.AbstractBundleContainer.resolve(AbstractBundleContainer.java:97)
+	at org.eclipse.pde.internal.core.target.TargetDefinition.resolve(TargetDefinition.java:423)
+	at org.eclipse.pde.internal.core.TargetPlatformHelper.getWorkspaceTargetResolved(TargetPlatformHelper.java:635)
+	at org.eclipse.pde.internal.core.PluginModelManager.getExternalBundles(PluginModelManager.java:668)
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:591)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:533)
+	at org.eclipse.pde.internal.core.PluginModelManager.getActiveModels(PluginModelManager.java:1105)
+	at org.eclipse.pde.internal.ui.search.dialogs.FilteredPluginArtifactsSelectionDialog.fillContentProvider(FilteredPluginArtifactsSelectionDialog.java:394)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.filterContent(FilteredItemsSelectionDialog.java:1959)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.internalRun(FilteredItemsSelectionDialog.java:1914)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.doRun(FilteredItemsSelectionDialog.java:1891)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.run(FilteredItemsSelectionDialog.java:1879)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.MalformedURLException: no protocol: ../../../.p2/pool/
+	at java.base/java.net.URL.<init>(URL.java:672)
+	at java.base/java.net.URL.<init>(URL.java:568)
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.processSite(ConfigurationParser.java:160)
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.startElement(ConfigurationParser.java:123)
+	... 33 more
+
+!ENTRY org.eclipse.update.configurator 4 0 2021-07-23 17:52:27.175
+!MESSAGE ConfigurationParser.parse() error:
+!STACK 0
+org.xml.sax.SAXException: NLS missing message: InstalledSiteParser_UnableToCreateURL in: org.eclipse.update.internal.configurator.messages
+java.net.MalformedURLException: no protocol: ../../../.p2/pool/
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.startElement(ConfigurationParser.java:133)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:518)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:374)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2725)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:541)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:888)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:824)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1224)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:635)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl.parse(SAXParserImpl.java:324)
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.parse(ConfigurationParser.java:88)
+	at org.eclipse.pde.internal.core.update.configurator.PlatformConfiguration.loadConfig(PlatformConfiguration.java:135)
+	at org.eclipse.pde.internal.core.update.configurator.PlatformConfiguration.initialize(PlatformConfiguration.java:85)
+	at org.eclipse.pde.internal.core.update.configurator.PlatformConfiguration.<init>(PlatformConfiguration.java:61)
+	at org.eclipse.pde.internal.core.PluginPathFinder.getFeaturePaths(PluginPathFinder.java:115)
+	at org.eclipse.pde.internal.core.ExternalFeatureModelManager.createFeatures(ExternalFeatureModelManager.java:174)
+	at org.eclipse.pde.internal.core.target.TargetDefinition.resolveFeatures(TargetDefinition.java:1059)
+	at org.eclipse.pde.internal.core.target.ProfileBundleContainer.resolveFeatures(ProfileBundleContainer.java:250)
+	at org.eclipse.pde.internal.core.target.AbstractBundleContainer.resolve(AbstractBundleContainer.java:97)
+	at org.eclipse.pde.internal.core.target.TargetDefinition.resolve(TargetDefinition.java:423)
+	at org.eclipse.pde.internal.core.TargetPlatformHelper.getWorkspaceTargetResolved(TargetPlatformHelper.java:635)
+	at org.eclipse.pde.internal.core.PluginModelManager.getExternalBundles(PluginModelManager.java:668)
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:591)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:533)
+	at org.eclipse.pde.internal.core.PluginModelManager.getActiveModels(PluginModelManager.java:1105)
+	at org.eclipse.pde.internal.ui.search.dialogs.FilteredPluginArtifactsSelectionDialog.fillContentProvider(FilteredPluginArtifactsSelectionDialog.java:394)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.filterContent(FilteredItemsSelectionDialog.java:1959)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.internalRun(FilteredItemsSelectionDialog.java:1914)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.doRun(FilteredItemsSelectionDialog.java:1891)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.run(FilteredItemsSelectionDialog.java:1879)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.MalformedURLException: no protocol: ../../../.p2/pool/
+	at java.base/java.net.URL.<init>(URL.java:672)
+	at java.base/java.net.URL.<init>(URL.java:568)
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.processSite(ConfigurationParser.java:160)
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.startElement(ConfigurationParser.java:123)
+	... 33 more
+
+!ENTRY org.eclipse.pde.core 4 0 2021-07-23 17:52:27.176
+!MESSAGE NLS missing message: InstalledSiteParser_UnableToCreateURL in: org.eclipse.update.internal.configurator.messages
+!STACK 0
+org.xml.sax.SAXException: NLS missing message: InstalledSiteParser_UnableToCreateURL in: org.eclipse.update.internal.configurator.messages
+java.net.MalformedURLException: no protocol: ../../../.p2/pool/
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.startElement(ConfigurationParser.java:133)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:518)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:374)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2725)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:541)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:888)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:824)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1224)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:635)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl.parse(SAXParserImpl.java:324)
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.parse(ConfigurationParser.java:88)
+	at org.eclipse.pde.internal.core.update.configurator.PlatformConfiguration.loadConfig(PlatformConfiguration.java:135)
+	at org.eclipse.pde.internal.core.update.configurator.PlatformConfiguration.initialize(PlatformConfiguration.java:85)
+	at org.eclipse.pde.internal.core.update.configurator.PlatformConfiguration.<init>(PlatformConfiguration.java:61)
+	at org.eclipse.pde.internal.core.PluginPathFinder.getFeaturePaths(PluginPathFinder.java:115)
+	at org.eclipse.pde.internal.core.ExternalFeatureModelManager.createFeatures(ExternalFeatureModelManager.java:174)
+	at org.eclipse.pde.internal.core.target.TargetDefinition.resolveFeatures(TargetDefinition.java:1059)
+	at org.eclipse.pde.internal.core.target.ProfileBundleContainer.resolveFeatures(ProfileBundleContainer.java:250)
+	at org.eclipse.pde.internal.core.target.AbstractBundleContainer.resolve(AbstractBundleContainer.java:97)
+	at org.eclipse.pde.internal.core.target.TargetDefinition.resolve(TargetDefinition.java:423)
+	at org.eclipse.pde.internal.core.TargetPlatformHelper.getWorkspaceTargetResolved(TargetPlatformHelper.java:635)
+	at org.eclipse.pde.internal.core.PluginModelManager.getExternalBundles(PluginModelManager.java:668)
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:591)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:533)
+	at org.eclipse.pde.internal.core.PluginModelManager.getActiveModels(PluginModelManager.java:1105)
+	at org.eclipse.pde.internal.ui.search.dialogs.FilteredPluginArtifactsSelectionDialog.fillContentProvider(FilteredPluginArtifactsSelectionDialog.java:394)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.filterContent(FilteredItemsSelectionDialog.java:1959)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.internalRun(FilteredItemsSelectionDialog.java:1914)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.doRun(FilteredItemsSelectionDialog.java:1891)
+	at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.run(FilteredItemsSelectionDialog.java:1879)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.MalformedURLException: no protocol: ../../../.p2/pool/
+	at java.base/java.net.URL.<init>(URL.java:672)
+	at java.base/java.net.URL.<init>(URL.java:568)
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.processSite(ConfigurationParser.java:160)
+	at org.eclipse.pde.internal.core.update.configurator.ConfigurationParser.startElement(ConfigurationParser.java:123)
+	... 33 more
+
+!ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2021-07-23 19:57:11.785
+!MESSAGE Connection closed with CodeTogether backend: 
+!SESSION 2021-07-26 13:08:14.420 -----------------------------------------------
+eclipse.buildId=4.20.0.I20210611-1600
+java.version=16.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.jface 2 0 2021-07-26 13:08:27.783
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-07-26 13:08:27.783
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2d8c729f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@740ee00f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)

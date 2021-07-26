@@ -1,0 +1,89 @@
+package main;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class surchessake {
+	
+	static JFrame applicationWindow = new JFrame("Surchessake");
+	static JPanel playArea = new JPanel();
+	static JButton newGame = new JButton("New Game");
+	
+	static Thread chessboardThread = new Thread(new chessboard());
+	
+	public static void main(String[] args) {
+
+		// The JFrame applicationWindow to display the game
+		surchessake.applicationWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		surchessake.applicationWindow.setSize(868, 635);
+		surchessake.applicationWindow.setLayout(null);
+		
+		// The JPanel playArea that sits in the JFrame applicationWindow and contains the chessboard
+		playArea.setSize(856, 600);
+		playArea.setLayout(null);
+		playArea.setBackground(Color.pink);
+		playArea.add(workers.displayStatsBoard());
+				
+		// New Game Button
+		newGame.setLocation(600, 44);
+		newGame.setSize(128,64);
+		newGame.setVisible(true);
+		newGame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("New Game button pressed!");
+
+				main.chessboard.LAN_BOARD.clear();
+				main.chessboard.squareArray.clear();
+				main.chessboard.pieceIconArray.clear();
+				reader.readLAN(reader.SETUP_BOARD);
+
+				playArea.getContentPane().removeAll();
+				surchessake.playArea.getContentPane().repaint();
+				playArea.add(workers.displayChessboard());
+			}
+		});
+		
+		surchessake.playArea.setVisible(true);
+		surchessake.applicationWindow.setVisible(true);
+		
+		
+		// Add chessboard to playArea, and playArea to applicationWindow.
+		surchessake.playArea.add(workers.displayChessboard());
+		surchessake.applicationWindow.add(surchessake.playArea);
+		
+		playArea.add(newGame);
+				
+				
+//		PGN.readPGN(reader.readPGNFromFile("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/games/blake-win.pgn"));
+//		PGN.readPGN(reader.readPGNFromFile("games/blake-win.pgn"));
+//		System.out.println(PGN.writePGN());
+
+		surchessake.chessboardThread.start();
+		workers.displayTimerAndMoves();
+		reader.readLAN(reader.SETUP_BOARD); // Sets up board with default LAN string.
+		 // Creates the JFrames, JPanels, etc. and ArrayList for board info.
+
+		
+		// Mouse and Piece Movement Thread
+		
+
+	}
+	
+	
+//	Note:
+	/*
+	 * Problem: If Mouse leaves the board, breaks everything.
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+}

@@ -37,7 +37,6 @@ public class chessboard implements Runnable {
 	public void run() {
 		try{
 			
-			workers.displayChessboard();
 			// Update check piece array and all piece legal moves.
 			updateCheckPiece(LAN_BOARD);
 			algorithm.updateAllPossibleLegalMoves();
@@ -61,8 +60,8 @@ public class chessboard implements Runnable {
 			panelInHand.add(labelInHand);
 
 			// Make applicationWindow glass pane.
-			workers.applicationWindow.setGlassPane(panelInHand);
-			workers.applicationWindow.getGlassPane().setSize(64,64);
+			surchessake.applicationWindow.setGlassPane(panelInHand);
+			surchessake.applicationWindow.getGlassPane().setSize(64,64);
 			
 			// Start off not holding a piece, and able to mess with the chessboard.
 			boolean holdPiece = false;
@@ -86,7 +85,7 @@ public class chessboard implements Runnable {
 				
 				// While holding a piece (you can't mess with the chessboard while holding the piece)
 				if(currentCursorType == Cursor.getPredefinedCursor(12) && holdPiece == true && messWithThechessboard == false) {
-					workers.applicationWindow.setCursor(currentCursorType);
+					surchessake.applicationWindow.setCursor(currentCursorType);
 					panelInHand.setLocation(Mouse.currentPointerLocation.x - 32, Mouse.currentPointerLocation.y - 64);
 					panelInHand.setVisible(true);
 					
@@ -96,14 +95,12 @@ public class chessboard implements Runnable {
 					//	if(pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).getIcon() == null)
 							if (!Piece.isPiece(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD))
 								pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-								.setIcon(new ImageIcon("C:/Users/AMD/Desktop//Surchessake/surchessake/Eclipse Project/images/legalmove.png"));
-								//.setIcon(new ImageIcon("images/legalmove.png"));
+//								.setIcon(new ImageIcon("C:/Users/AMD/Desktop//Surchessake/surchessake/Eclipse Project/images/legalmove.png"));
+								.setIcon(new ImageIcon("images/legalmove.png"));
 							else {
 							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-								//.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalcapture.png"));
-								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/ct" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
-								//System.out.println("images/ct" + Integer.toString(LAN_BOARD.get().getType()) + ".png");
-								
+//								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/ct" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
+								.setIcon(new ImageIcon("images/ct" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
 							}
 							
 					
@@ -119,8 +116,8 @@ public class chessboard implements Runnable {
 							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).setIcon(null);
 						else {
 							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
-								//.setIcon(new ImageIcon("images/" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
+//								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
+								.setIcon(new ImageIcon("images/" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
 								
 							}
 					// If the square to drop on is a legal move.
@@ -165,15 +162,12 @@ public class chessboard implements Runnable {
 					holdPiece = false;					
 					messWithThechessboard = true;
 
-					// Displays all possible moves for each piece.
-//					algorithm.displayAllPossibleMoves();
-					
-				} // Dropping a piece.
-
-			} // while(true)
-
-		} catch (Exception e) {} // Try catch in run().
-
-	} // run()
-
-} // chessboard
+				}
+				surchessake.playArea.revalidate();
+				surchessake.applicationWindow.revalidate();
+			}
+		} catch (Exception e) {
+			System.out.print("while(true) threw an exception!!!!!!!");
+		}
+	}
+}

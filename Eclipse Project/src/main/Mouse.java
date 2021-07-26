@@ -48,7 +48,7 @@ public class Mouse implements MouseListener {
 		
 		// Sets the current cursor to a hand cursor.
 		chessboard.currentCursorType = Cursor.getPredefinedCursor(12);
-		workers.chessboard.setCursor(chessboard.currentCursorType);
+		surchessake.playArea.setCursor(chessboard.currentCursorType);
 	}
 
 	@Override
@@ -62,15 +62,13 @@ public class Mouse implements MouseListener {
 		
 		// Sets the current cursor back to the default cursor.
 		chessboard.currentCursorType = Cursor.getDefaultCursor();
-		workers.chessboard.setCursor(chessboard.currentCursorType);
+		surchessake.playArea.setCursor(chessboard.currentCursorType);
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		onChessboard++;
 		currentSquare = location;
-//		if(clicked = true)				// Something's wrong here lol
-//			newSquare = location;
 	}
 
 	@Override
