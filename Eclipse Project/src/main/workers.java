@@ -24,7 +24,7 @@ public class workers {
 
 		public GameClock(JPanel panel, int color) {
 
-			timeLabel.setFont(new Font("Serif", Font.PLAIN, 50));
+			timeLabel.setFont(new Font("Serif", Font.PLAIN, 12));
 
 			timeFormat = new SimpleDateFormat("mm:ss");
 			time = timeFormat.format(milliseconds);
@@ -82,7 +82,6 @@ public class workers {
 		statsBoard.setSize(208, 384);
 		statsBoard.setLocation(600, 108);
 		statsBoard.setBackground(Color.white);
-		statsBoard.setVisible(true);
 		statsBoard.setLayout(new BorderLayout());
 
 		statsBoard.add(blackClockPanel, BorderLayout.PAGE_START);
@@ -90,6 +89,8 @@ public class workers {
 		statsBoard.add(whiteClockPanel, BorderLayout.PAGE_END);
 		
 		statsBoard.repaint();
+		statsBoard.setVisible(true);
+
 		return statsBoard;
 	}
 	

@@ -6,13 +6,19 @@ import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.Image;
+import java.awt.Cursor;
+import java.awt.Point;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 
 public class surchessake {
 	
@@ -22,6 +28,11 @@ public class surchessake {
 	static Thread chessboardThread = new Thread(new chessboard());
 	
 	public static void main(String[] args) {
+
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Image image = toolkit.getImage("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalmove.png");
+		Cursor c = toolkit.createCustomCursor(image , new Point(applicationWindow.getX(), applicationWindow.getY()), "img");
+		applicationWindow.setCursor(c);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		
@@ -30,11 +41,9 @@ public class surchessake {
 		applicationWindow.setPreferredSize(new Dimension(896, 640));
 		applicationWindow.setLayout(new GridBagLayout());
 		applicationWindow.setResizable(false);
-		
 		applicationWindow.setVisible(true);
-		
-		
-		newGame.setPreferredSize(new Dimension(64, 64));
+
+		newGame.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
 		newGame.setVisible(true);
 		newGame.addActionListener(new ActionListener() {
 			@Override

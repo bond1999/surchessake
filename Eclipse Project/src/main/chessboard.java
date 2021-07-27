@@ -69,9 +69,7 @@ public class chessboard implements Runnable {
 				// If the mouse is on a square with a piece.
 				if(Piece.isPiece(Mouse.currentSquare, LAN_BOARD) && holdPiece == false && messWithThechessboard == true) {
 					if(Mouse.clicked == true && LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getColor() == PGN.turnOrder ) {
-//							LAN_BOARD.get(Piece.getPieceIndex(Mouse.currentSquare, LAN_BOARD)).getLegalMoves().size() == 0) {
 						labelInHand.setIcon(new ImageIcon(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc()));
-						System.out.printf("Label is at %d, %d \n",labelInHand.getX(), labelInHand.getX());
 						holdPiece = true;
 						messWithThechessboard = false;
 						StringBuilder transparent = new StringBuilder(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getImgsrc());
@@ -85,18 +83,20 @@ public class chessboard implements Runnable {
 					surchessake.applicationWindow.setCursor(currentCursorType);
 					panelInHand.setLocation(Mouse.currentPointerLocation.x - 32, Mouse.currentPointerLocation.y - 64);
 					panelInHand.setVisible(true);
-					
-					
+
+					//System.out.println(Mouse.currentPointerLocation.x);
+					//System.out.println(Mouse.currentPointerLocation.y);
+
 					// Legal Moves for the current piece are displayed with a yellow/red dot on top
 					for(int i = 0; i < LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().size(); i++)
 							if (!Piece.isPiece(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD))
 								pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-//								.setIcon(new ImageIcon("C:/Users/AMD/Desktop//Surchessake/surchessake/Eclipse Project/images/legalmove.png"));
-								.setIcon(new ImageIcon("images/legalmove.png"));
+								.setIcon(new ImageIcon("C:/Users/AMD/Desktop//Surchessake/surchessake/Eclipse Project/images/legalmove.png"));
+								//.setIcon(new ImageIcon("images/legalmove.png"));
 							else {
 							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-//								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/ct" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
-								.setIcon(new ImageIcon("images/ct" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
+							.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/ct" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
+								//.setIcon(new ImageIcon("images/ct" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
 							}
 							
 					
@@ -112,8 +112,8 @@ public class chessboard implements Runnable {
 							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i)).setIcon(null);
 						else {
 							pieceIconArray.get(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i))
-//								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
-								.setIcon(new ImageIcon("images/" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
+								.setIcon(new ImageIcon("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
+								//.setIcon(new ImageIcon("images/" + Integer.toString(LAN_BOARD.get(Piece.getPieceIndex(LAN_BOARD.get(Piece.getPieceIndex(Mouse.originalSquare, LAN_BOARD)).getLegalMoves().get(i), LAN_BOARD)).getType()) + ".png"));
 								
 							}
 					// If the square to drop on is a legal move.

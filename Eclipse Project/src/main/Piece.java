@@ -105,8 +105,8 @@ public class Piece {
 	// Methods
 	public void importValues(char n, int l) {
 
-//		String url1 = "C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/", url2 = ".png";
-		String url1 = "images/", url2 = ".png";
+		String url1 = "C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/", url2 = ".png";
+		//String url1 = "images/", url2 = ".png";
 		
 		// Convert Char n to String (ASCII flex)
 		if((n + 0) > 97 && (n + 0) < 122)
