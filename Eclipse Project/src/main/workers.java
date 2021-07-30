@@ -11,8 +11,6 @@ import javax.swing.*;
 
 public class workers {
 
-	
-
 	static class GameClock extends JPanel {
 		
 		SimpleDateFormat timeFormat;
@@ -94,11 +92,9 @@ public class workers {
 		return statsBoard;
 	}
 	
-	static JPanel chessboard = new JPanel();
-	
 	public static JPanel displayChessboard() {
 
-		
+		JPanel chessboard = new JPanel();
 		// The JPanel that displays the chess chessboard and sits in the playArea
 		chessboard.setPreferredSize(new Dimension(512, 512));
 //		chessboard.setLocation(44, 44);
@@ -114,11 +110,9 @@ public class workers {
 			for(int j = 0; j < 8; j++) {
 				
 				JPanel square = new JPanel();
-
 				// Beautiful ASCII fleing.
 				char letter = (char) (j + 97);
 				char number = (char) (8 - i + 48);
-
 				//square.setSize(64, 64);
 				square.setPreferredSize(new Dimension(64, 64));
 				
@@ -136,21 +130,7 @@ public class workers {
 					 flag = 0;
 				}
 				
-				JLabel piece = new JLabel();
-				
-				// If the square is the location of a piece, get correct icon.
-				for(int k=0; k<main.chessboard.LAN_BOARD.size(); k++) {
-					if(squareIndex == main.chessboard.LAN_BOARD.get(k).getLocation())
-						piece.setIcon(new ImageIcon(main.chessboard.LAN_BOARD.get(Piece.getPieceIndex(squareIndex, main.chessboard.LAN_BOARD)).getImgsrc()));
-				}
 
-				// Add the piece to the array and square.
-				piece.setHorizontalAlignment(SwingConstants.CENTER);
-		        piece.setVerticalAlignment(SwingConstants.CENTER);
-		        main.chessboard.pieceIconArray.add(piece);
-				piece.setVisible(true);
-				piece.setSize(64,64);
-				square.add(piece);
 
 				// add square to the arraylist
 				main.chessboard.squareArray.add(square);
@@ -176,7 +156,6 @@ public class workers {
 		// Set visibility.
 		chessboard.setVisible(true);
 //		chessboard.pack();
-
 		return chessboard;
 		
 	} // displaychessboard()

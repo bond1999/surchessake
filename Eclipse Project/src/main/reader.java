@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 import piece.bishop;
 import piece.king;
 import piece.knight;
@@ -14,19 +18,19 @@ import piece.rook;
 // Read FEN and PGN
 public class reader {
 
-		public static String readPGNFromFile (String filename) {
-			String fileContents = "";
-			try {
-				fileContents = new String (Files.readAllBytes(Paths.get(filename)));
-	        } 
-	        catch (IOException e) 
-	        {
-	            e.printStackTrace();
-	        }
-	        return fileContents;
-		}
+	public static String readPGNFromFile (String filename) {
+		String fileContents = "";
+		try {
+			fileContents = new String (Files.readAllBytes(Paths.get(filename)));
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+        return fileContents;
+	}
 	
-	        public static String SETUP_BOARD = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+    public static String SETUP_BOARD = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 	
 	// Function to read a FEN String and create Pieces in the back-end
 	public static void readLAN(String LAN) {
@@ -80,6 +84,23 @@ public class reader {
 				pIndex += (pString[i] - 48);
 
 		}
+		
+		
+		
+
+		// If the square is the location of a piece, get correct icon.
+		for(int k=0; k<64; k++) {
+			JLabel piece = new JLabel();
+			piece.setHorizontalAlignment(SwingConstants.CENTER);
+	        piece.setVerticalAlignment(SwingConstants.CENTER);
+	        piece.setVisible(true);
+			piece.setSize(64,64);
+			piece.setIcon(null);
+			main.chessboard.pieceIconArray.add(piece);
+			main.chessboard.squareArray.get(k).add(piece);
+		}
+		for(int k=0; k<main.chessboard.LAN_BOARD.size(); k++)	
+			main.chessboard.pieceIconArray.get(main.chessboard.LAN_BOARD.get(k).getLocation()).setIcon(new ImageIcon(main.chessboard.LAN_BOARD.get(k).getImgsrc()));
 	}
 	
 	

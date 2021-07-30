@@ -28,20 +28,29 @@ public class surchessake {
 	static Thread chessboardThread = new Thread(new chessboard());
 	
 	public static void main(String[] args) {
-
+try {
+		JPanel chessboard = workers.displayChessboard();
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Image image = toolkit.getImage("C:/Users/AMD/Desktop/Surchessake/surchessake/Eclipse Project/images/legalmove.png");
+		Image image = toolkit.getImage("images/legalmove.png");
 		Cursor c = toolkit.createCustomCursor(image , new Point(applicationWindow.getX(), applicationWindow.getY()), "img");
 		applicationWindow.setCursor(c);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		
-		// The JFrame applicationWindow to display the game
+//		 The JFrame applicationWindow to display the game
 		applicationWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		applicationWindow.setPreferredSize(new Dimension(896, 640));
 		applicationWindow.setLayout(new GridBagLayout());
 		applicationWindow.setResizable(false);
 		applicationWindow.setVisible(true);
+
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridheight = 8;
+		gbc.gridwidth = 8;
+		
+		gbc.insets = new Insets(0, 0, 0, 64);
+		applicationWindow.add(chessboard, gbc);
 
 		newGame.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
 		newGame.setVisible(true);
@@ -57,23 +66,14 @@ public class surchessake {
 				PGN.capture = false;
 
 				main.chessboard.LAN_BOARD.clear();
-				main.chessboard.squareArray.clear();
 				main.chessboard.pieceIconArray.clear();
 				reader.readLAN(reader.SETUP_BOARD);
-
+				System.out.print(main.chessboard.LAN_BOARD.size());
+				System.out.print(main.chessboard.pieceIconArray.size());
 				applicationWindow.repaint();
 
-				gbc.gridx = 0;
-				gbc.gridy = 0;
-				gbc.gridheight = 8;
-				gbc.gridwidth = 8;
-
-				gbc.insets = new Insets(0, 0, 0, 64);
-
-				applicationWindow.add(workers.displayChessboard(), gbc);
-				
-				
-				surchessake.chessboardThread.start();
+				if(!chessboardThread.isAlive())
+					chessboardThread.start();	
 			}
 		});
 		
@@ -85,6 +85,7 @@ public class surchessake {
 		applicationWindow.add(newGame, gbc);
 		surchessake.applicationWindow.revalidate();
 		applicationWindow.pack();
+	}catch(Exception e) {e.printStackTrace();}
 	}
 	
 }
