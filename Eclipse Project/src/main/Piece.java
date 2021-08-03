@@ -129,19 +129,6 @@ public class Piece {
 	}
 
 
-	public static int getPieceIndex(int location, ArrayList<Piece> LAN_BOARD) {
-		int l = -1;
-		if(location > 63 || location < 0)
-			return 69;
-		else {
-			for (int i = 0; i < LAN_BOARD.size(); i++) {
-				if (location == LAN_BOARD.get(i).getLocation()) 
-					l = i;
-			}
-			return l;
-		}
-	}
-
 	public static boolean isInCheck(int[] indexedPieceArray, int color) { // 10
 		int kingLocation = -1; 
 		

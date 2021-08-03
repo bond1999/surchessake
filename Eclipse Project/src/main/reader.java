@@ -85,10 +85,6 @@ public class reader {
 
 		}
 		
-		
-		
-
-		// If the square is the location of a piece, get correct icon.
 		for(int k=0; k<64; k++) {
 			JLabel piece = new JLabel();
 			piece.setHorizontalAlignment(SwingConstants.CENTER);
@@ -97,7 +93,8 @@ public class reader {
 			piece.setSize(64,64);
 			piece.setIcon(null);
 			main.chessboard.pieceIconArray.add(piece);
-			main.chessboard.squareArray.get(k).add(piece);
+			main.chessboard.squareArray.get(k).removeAll();
+			main.chessboard.squareArray.get(k).add(main.chessboard.pieceIconArray.get(k));
 		}
 		for(int k=0; k<main.chessboard.LAN_BOARD.size(); k++)	
 			main.chessboard.pieceIconArray.get(main.chessboard.LAN_BOARD.get(k).getLocation()).setIcon(new ImageIcon(main.chessboard.LAN_BOARD.get(k).getImgsrc()));

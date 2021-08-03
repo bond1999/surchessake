@@ -65,13 +65,13 @@ try {
 				PGN.moveNumber = 1;
 				PGN.capture = false;
 
-				main.chessboard.LAN_BOARD.clear();
-				main.chessboard.pieceIconArray.clear();
+				main.chessboard.LAN_BOARD.removeAll(main.chessboard.LAN_BOARD);
+				main.chessboard.pieceIconArray.removeAll(main.chessboard.pieceIconArray);
 				reader.readLAN(reader.SETUP_BOARD);
-				System.out.print(main.chessboard.LAN_BOARD.size());
-				System.out.print(main.chessboard.pieceIconArray.size());
+				main.chessboard.updateCheckPiece(main.chessboard.LAN_BOARD);
+				algorithm.updateAllPossibleLegalMoves();
+				
 				applicationWindow.repaint();
-
 				if(!chessboardThread.isAlive())
 					chessboardThread.start();	
 			}

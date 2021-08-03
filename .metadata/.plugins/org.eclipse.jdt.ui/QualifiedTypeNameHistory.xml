@@ -29,11 +29,11 @@
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
-    <fullyQualifiedTypeName name="main.chessboard"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="java.awt.GridBagConstraints"/>
     <fullyQualifiedTypeName name="java.awt.GridBagLayout"/>
     <fullyQualifiedTypeName name="main.surchessake"/>
     <fullyQualifiedTypeName name="java.awt.Insets"/>
+    <fullyQualifiedTypeName name="main.chessboard"/>
 </qualifiedTypeNameHistroy>
